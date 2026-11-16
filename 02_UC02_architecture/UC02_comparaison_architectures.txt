@@ -1,0 +1,152 @@
+RETAIL INTELLIGENCE PLATFORM
+UC-02 — COMPARAISON DES ARCHITECTURES
+
+1. CONTEXTE ET OBJECTIF
+
+Retail Intelligence souhaite analyser ses ventes, ses produits,
+ses clients, ses magasins et ses stocks.
+
+Les données fournies proviennent du jeu TPCx-BB.
+L'inventaire UC-01 a identifié 23 fichiers DAT dans le répertoire
+principal data, représentant environ 977 Mo.
+
+L'objectif est de comparer trois approches afin de choisir
+une architecture adaptée aux besoins analytiques et aux
+technologies prévues dans le parcours.
+
+2. COMPARAISON DES APPROCHES
+
+DATA WAREHOUSE
+
+Principe :
+Centraliser des données structurées, préparées et organisées
+pour les analyses décisionnelles.
+
+Avantages :
+- Modèle de données organisé pour la BI.
+- Requêtes analytiques facilitées.
+- Indicateurs cohérents et centralisés.
+- Adapté aux tableaux de bord.
+
+Limites :
+- Préparation préalable des données nécessaire.
+- Moins flexible pour conserver des formats variés.
+- Évolution du modèle pouvant être coûteuse.
+
+Pertinence pour Retail Intelligence :
+Adapté aux indicateurs commerciaux, mais moins adapté
+à la conservation de l'ensemble des données brutes.
+
+DATA LAKE
+
+Principe :
+Centraliser les données dans leur format d'origine,
+avant ou indépendamment de leur transformation.
+
+Avantages :
+- Conservation des données brutes.
+- Support de plusieurs formats.
+- Flexibilité pour de futurs traitements.
+- Adapté aux volumes importants.
+
+Limites :
+- Risque de désorganisation sans gouvernance.
+- Qualité non garantie par le stockage.
+- Préparation nécessaire avant exploitation métier.
+
+Pertinence pour Retail Intelligence :
+Adapté à la conservation des fichiers TPCx-BB et
+aux traitements distribués prévus dans le parcours.
+
+LAKEHOUSE
+
+Principe :
+Associer la flexibilité d'un Data Lake à des capacités
+d'organisation et d'exploitation analytiques.
+
+Avantages :
+- Conservation des données brutes.
+- Organisation en zones Bronze, Silver et Gold.
+- Préparation des données pour les usages analytiques.
+- Possibilité de partager un stockage entre plusieurs usages.
+
+Limites :
+- Architecture plus complexe à gouverner.
+- Nécessite des règles de qualité et de gestion des données.
+- Les garanties transactionnelles nécessitent des composants
+  adaptés ; le format Parquet seul ne les apporte pas.
+
+Pertinence pour Retail Intelligence :
+Approche intéressante pour réunir conservation, transformation
+et exploitation analytique dans une même plateforme.
+
+3. COMPARAISON SYNTHETIQUE
+
+Critère : Données brutes
+Data Warehouse : Peu adapté
+Data Lake : Très adapté
+Lakehouse : Très adapté
+
+Critère : Données structurées
+Data Warehouse : Très adapté
+Data Lake : Adapté
+Lakehouse : Très adapté
+
+Critère : Formats variés
+Data Warehouse : Limité
+Data Lake : Très adapté
+Lakehouse : Très adapté
+
+Critère : Analyses BI
+Data Warehouse : Très adapté
+Data Lake : Nécessite préparation
+Lakehouse : Adapté
+
+Critère : Flexibilité
+Data Warehouse : Moyenne
+Data Lake : Élevée
+Lakehouse : Élevée
+
+Critère : Gouvernance
+Data Warehouse : Structurée
+Data Lake : À organiser
+Lakehouse : À organiser
+
+4. CHOIX RETENU
+
+Nous retenons une architecture de type Data Lake organisée
+en zones Bronze, Silver et Gold, avec une couche analytique
+exploitant le format Parquet.
+
+Cette approche répond à plusieurs objectifs :
+- Conserver les fichiers sources dans leur état d'origine.
+- Nettoyer et harmoniser les données.
+- Préparer des jeux de données destinés aux indicateurs.
+- Permettre les traitements distribués avec Spark.
+- Préparer une évolution vers une cible cloud Azure.
+
+Cette proposition reprend certains principes du Lakehouse,
+sans supposer l'utilisation de Delta Lake, qui est facultatif
+dans le parcours.
+
+5. LIMITES ET HYPOTHESES
+
+Les volumes observés proviennent de l'inventaire UC-01.
+Les performances futures ne sont pas mesurées à ce stade.
+
+Les relations entre tables doivent être validées avant
+la construction des jeux de données analytiques.
+
+Le choix architectural est une proposition logique.
+Il ne signifie pas que tous les composants ont déjà été
+installés ou déployés.
+
+La gouvernance, la qualité et la sécurité devront être
+définies avant la mise en production.
+
+CONCLUSION
+
+L'architecture retenue privilégie la conservation des données,
+leur préparation progressive et leur exploitation analytique.
+Elle est cohérente avec les objectifs du parcours Hadoop,
+HDFS, NiFi, Spark et Parquet.

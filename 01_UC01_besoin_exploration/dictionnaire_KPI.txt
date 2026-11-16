@@ -1,0 +1,65 @@
+RETAIL INTELLIGENCE PLATFORM
+UC-01 — DICTIONNAIRE INITIAL DE KPI
+
+IMPORTANT
+Les formules ci-dessous sont des définitions métier candidates. Les colonnes exactes, clés, unités monétaires et règles de calcul doivent être vérifiées avant implémentation.
+
+KPI 1 — CHIFFRE D'AFFAIRES
+Définition : montant total des ventes sur le périmètre et la période retenus.
+Formule : somme des montants de vente validés.
+Unité : unité monétaire du jeu de données, à confirmer.
+Périmètre : ventes magasin ou web, présentées séparément au départ.
+Fréquence : quotidienne ou mensuelle selon la disponibilité des dates.
+Sources candidates : store_sales, web_sales, date_dim.
+Données nécessaires : montant de vente, date, canal et règle de traitement des retours.
+Limites : ne pas additionner les canaux sans vérifier leur comparabilité. La devise et la définition du montant restent à confirmer.
+
+KPI 2 — NOMBRE DE TRANSACTIONS
+Définition : nombre de transactions commerciales distinctes sur une période.
+Formule : nombre distinct d'identifiants de transaction validés.
+Unité : transactions.
+Périmètre : magasin ou web séparément.
+Fréquence : quotidienne ou mensuelle.
+Sources candidates : store_sales, web_sales.
+Données nécessaires : identifiant de transaction et définition métier de celui-ci.
+Limites : une ligne de vente n'est pas nécessairement une transaction. La clé exacte reste à confirmer.
+
+KPI 3 — PANIER MOYEN
+Définition : montant moyen dépensé par transaction.
+Formule : chiffre d'affaires du périmètre / nombre de transactions distinctes du même périmètre.
+Unité : unité monétaire par transaction.
+Périmètre : canal et période identiques au chiffre d'affaires et au nombre de transactions.
+Fréquence : quotidienne ou mensuelle.
+Sources candidates : store_sales, web_sales, date_dim.
+Données nécessaires : montants et identifiants de transaction fiables.
+Limites : non calculable de façon fiable tant que la notion de transaction et les champs de montant ne sont pas validés.
+
+KPI 4 — QUANTITES VENDUES
+Définition : total des unités vendues sur une période.
+Formule : somme des quantités des lignes de vente validées.
+Unité : unités ou articles.
+Périmètre : par produit, magasin, canal et période selon les champs disponibles.
+Fréquence : quotidienne ou mensuelle.
+Sources candidates : store_sales, web_sales, item, store.
+Données nécessaires : quantité, produit, date, magasin ou canal.
+Limites : vérifier l'unité, les annulations et le traitement des retours.
+
+KPI 5 — EVOLUTION DU CHIFFRE D'AFFAIRES
+Définition : variation relative du chiffre d'affaires entre deux périodes comparables.
+Formule : ((CA période actuelle - CA période précédente) / CA période précédente) x 100.
+Unité : pourcentage.
+Périmètre : même canal, même population et périodes comparables.
+Fréquence : mensuelle ou trimestrielle.
+Sources candidates : store_sales ou web_sales, date_dim.
+Données nécessaires : montant et dimension temporelle fiables.
+Limites : si le CA de la période précédente est nul, le taux n'est pas calculable. Les périodes doivent être comparables.
+
+KPI COMPLEMENTAIRE — TAUX DE REMISE
+Définition : part de la valeur de référence réduite par les remises.
+Formule candidate : montant total des remises / montant total avant remise x 100.
+Unité : pourcentage.
+Périmètre : ventes dont les champs de prix et remise sont documentés.
+Fréquence : mensuelle.
+Sources candidates : store_sales, web_sales, item.
+Données nécessaires : prix avant remise, montant de remise et règles de calcul.
+Limites : à ne pas calculer tant que les colonnes et leur signification ne sont pas confirmées.

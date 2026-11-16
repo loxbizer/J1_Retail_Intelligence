@@ -1,0 +1,41 @@
+RETAIL INTELLIGENCE PLATFORM
+UC-01 — CADRAGE METIER
+
+1. CONTEXTE
+La direction de Retail Intelligence souhaite mettre en place des indicateurs fiables pour piloter les ventes, comparer les magasins et comprendre les évolutions de l'activité.
+
+Le projet s'appuie principalement sur TPCx-BB. Ce jeu de données est synthétique et constitue un support pédagogique, pas une représentation exhaustive d'une entreprise réelle.
+
+2. OBJECTIF
+Formaliser les besoins métier avant de concevoir les traitements et l'architecture Data. Vérifier que les informations nécessaires existent réellement dans les sources.
+
+3. PROFILS UTILISATEURS PROPOSES
+Ces profils sont une proposition de cadrage à valider avec le commanditaire.
+
+- Direction commerciale : suit la performance globale, compare les magasins et arbitre les priorités commerciales.
+- Responsable de magasin : suit les ventes de son magasin, les quantités vendues et les évolutions de son activité.
+- Équipe Data / Analyste : prépare les données, contrôle leur qualité, construit les indicateurs et explique leurs limites.
+
+4. BESOINS
+- Mesurer le chiffre d'affaires et son évolution.
+- Comparer les performances des magasins.
+- Comprendre les quantités vendues et les produits concernés.
+- Distinguer les ventes en magasin et les ventes web.
+- Suivre les retours séparément des ventes.
+- Étudier les stocks lorsque les données nécessaires sont disponibles.
+- Explorer les comportements web sans assimiler les clics à des achats.
+
+5. SOURCES OBSERVEES
+Le répertoire principal data/ contient 23 fichiers .dat analysés.
+33 907 536 lignes ont été observées au total.
+Les domaines identifiés comprennent notamment les clients, produits, magasins, stocks, ventes magasin, ventes web, retours, navigation et dimensions temporelles.
+
+Le profilage structurel initial n'a détecté aucune ligne avec un nombre de colonnes différent de celui observé sur la première ligne non vide de chaque fichier.
+
+6. POINTS A CONFIRMER
+- Signification exacte des colonnes sans en-tête.
+- Clés et relations entre tables.
+- Définition métier d'une transaction.
+- Correspondance des montants et quantités avec les champs réels.
+- Version, provenance et date de mise à disposition du kit.
+- Besoins détaillés des utilisateurs métier.

@@ -1,0 +1,8 @@
+
+5. TABLE INVENTORY — inventory.dat
+Emplacement : data/inventory/inventory.dat
+Lignes analysées : 23255100
+Nombre de colonnes : 4
+Lignes mal structurées : 0
+Champs vides : 5999
+Valeurs répétées dans la première colonne : 23254841

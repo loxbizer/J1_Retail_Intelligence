@@ -1,0 +1,47 @@
+RETAIL INTELLIGENCE PLATFORM
+UC-01 — LIMITES ET HYPOTHESES
+
+1. PROVENANCE
+Le jeu principal est identifié comme TPCx-BB dans le sujet. La version exacte, la provenance du kit distribué, la date de mise à disposition et les éventuelles adaptations du formateur restent non vérifiées.
+
+2. DONNEES SYNTHETIQUES
+TPCx-BB est un jeu synthétique à vocation pédagogique. Les résultats ne doivent pas être présentés comme représentatifs de l'ensemble d'une entreprise réelle.
+
+3. DOCUMENTATION DES COLONNES
+Les fichiers .dat examinés sont séparés par le caractère | et ne présentent pas d'en-tête visible dans les premiers enregistrements consultés. La signification des positions doit être confirmée par un schéma ou une documentation.
+
+4. QUALITE
+Le profilage structurel initial a mesuré les lignes, colonnes et champs vides. Il ne suffit pas à garantir la validité métier, les domaines de valeurs ou la cohérence des montants.
+
+5. CLES ET RELATIONS
+Une valeur répétée dans une colonne ne prouve pas à elle seule l'existence de doublons métier. Les clés primaires, clés composées, cardinalités et correspondances entre tables restent à vérifier.
+
+6. VENTES MAGASIN ET VENTES WEB
+Les deux canaux ne sont pas nécessairement modélisés de la même manière. Leur comparaison exige de vérifier les définitions, champs et périmètres.
+
+7. TRANSACTION ET LIGNE DE VENTE
+Une vente, une commande, une ligne de vente et une transaction ne sont pas des notions interchangeables. Le calcul du nombre de transactions et du panier moyen nécessite une définition confirmée.
+
+8. NAVIGATION WEB
+Les clics web ne représentent pas automatiquement des ajouts au panier ou des achats. Une mesure de conversion nécessite des événements et identifiants permettant de relier les étapes.
+
+9. RETOURS
+Les retours doivent être distingués des ventes. Toute mesure nette doit expliciter la méthode de rapprochement et de calcul.
+
+10. INTERPRETATION
+Une corrélation entre deux indicateurs ne démontre pas une relation de causalité.
+
+11. STOCKS
+La présence d'un fichier de stock ne garantit pas que l'historique, les dates et les lieux soient suffisants pour expliquer les ruptures ou la disponibilité.
+
+12. DONNEES COMPLEMENTAIRES
+Les données complémentaires éventuelles doivent être identifiées séparément et ne doivent pas être fusionnées silencieusement avec les données TPCx-BB.
+
+STATUT DES INFORMATIONS
+Vérifié : directement observé dans les fichiers.
+Déduit : obtenu par analyse avec justification.
+Hypothèse : proposition à confirmer.
+Non disponible : absent des données examinées.
+À valider : nécessite une vérification ou une décision du formateur.
+
+Les indicateurs dont les champs ou relations ne sont pas confirmés restent des besoins à valider, et non des résultats calculés.

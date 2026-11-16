@@ -1,0 +1,262 @@
+RETAIL INTELLIGENCE PLATFORM
+UC-02 — SCHEMA DES FLUX DE DONNEES
+
+1. OBJECTIF
+
+Décrire le cheminement des données depuis les sources TPCx-BB
+jusqu'aux données analytiques utilisées par les métiers.
+
+Le flux proposé est principalement de type batch :
+les fichiers sont collectés et traités par lots.
+
+2. SCHEMA GENERAL
+
++-------------------------------+
+| SOURCES TPCx-BB               |
+|                               |
+| data/ : 23 fichiers DAT       |
+| data_refresh/ : 11 fichiers   |
+| Fichier d'audit CSV           |
++---------------+---------------+
+                |
+                v
++-------------------------------+
+| INGESTION - APACHE NIFI       |
+|                               |
+| Collecte des fichiers         |
+| Transfert et orchestration    |
+| Journalisation des executions |
++---------------+---------------+
+                |
+                v
++-------------------------------+
+| BRONZE - HDFS                 |
+|                               |
+| Conservation des fichiers     |
+| Sources originales            |
+| Provenance et date ingestion  |
++---------------+---------------+
+                |
+                v
++-------------------------------+
+| CONTROLES ET PREPARATION      |
+|                               |
+| Python / Spark / PySpark      |
+| Formats, colonnes, types      |
+| Valeurs manquantes, doublons  |
++---------------+---------------+
+                |
+         +------+------+
+         |             |
+         v             v
++------------------+  +------------------+
+| SILVER - HDFS    |  | ZONE DE REJETS   |
+| Donnees nettoyees|  | Fichiers/lignes  |
+| Structures       |  | Motifs de rejet  |
+| harmonisees      |  | Provenance       |
+| Format Parquet   |  | Journalisation   |
++--------+---------+  +------------------+
+         |
+         v
++-------------------------------+
+| TRANSFORMATIONS - SPARK       |
+|                               |
+| Agregations                   |
+| Calcul des indicateurs        |
+| Preparation des jeux metier   |
++---------------+---------------+
+                |
+                v
++-------------------------------+
+| GOLD - HDFS / PARQUET         |
+|                               |
+| Donnees analytiques           |
+| Indicateurs consolides        |
+| Jeux de donnees pour la BI    |
++---------------+---------------+
+                |
+                v
++-------------------------------+
+| UTILISATEURS METIER           |
+|                               |
+| Direction                     |
+| Responsables de magasins      |
+| Analystes                     |
++-------------------------------+
+
+BRANCHE DE REJETS — CONTROLES DE QUALITE
+
+Les fichiers non conformes sont isoles dans une zone de rejet.
+Les lignes invalides sont ecartees des donnees Silver et journalisees.
+Chaque rejet conserve sa provenance et le motif de rejet.
+Les donnees originales restent conservees en Bronze.
+Les anomalies sont documentees avant toute correction.
+
+GOUVERNANCE TRANSVERSALE :
+Traçabilite - Qualite - Securite - Documentation - Supervision
+
+3. DESCRIPTION DETAILLEE DES FLUX
+
+FLUX 1 — SOURCES VERS INGESTION
+
+Source :
+Repertoire TPCx-BB data/ et data_refresh/.
+
+Format d'entree :
+Fichiers DAT tabulaires delimites.
+Fichier d'audit au format CSV.
+
+Mecanisme envisage :
+Apache NiFi pour collecter, transferer et orchestrer
+les fichiers vers la plateforme de stockage.
+
+Controles :
+- Presence des fichiers attendus.
+- Nom et origine des fichiers.
+- Taille et date de modification.
+- Detection des fichiers deja ingeres.
+
+Resultat :
+Fichiers collectes et identifies.
+
+FLUX 2 — INGESTION VERS BRONZE
+
+Source :
+Fichiers collectes par NiFi.
+
+Format :
+Conservation du format d'origine.
+
+Destination :
+HDFS, zone Bronze.
+
+Traitement :
+Stockage des fichiers sans transformation destructive.
+
+Controles :
+- Verification de l'ecriture.
+- Comparaison du nombre de fichiers.
+- Enregistrement de la date d'ingestion.
+- Conservation de la provenance.
+
+Resultat :
+Copie brute et tracable des donnees sources.
+
+FLUX 3 — BRONZE VERS SILVER
+
+Source :
+Fichiers conserves en Bronze.
+
+Mecanisme :
+Python et Apache Spark / PySpark.
+
+Traitements :
+- Lecture des fichiers.
+- Verification du nombre de colonnes.
+- Controle des types de donnees.
+- Detection des valeurs manquantes.
+- Recherche de doublons.
+- Identification des incoherences.
+- Verification des identifiants candidats.
+- Validation des relations entre tables.
+
+Destination :
+HDFS, zone Silver.
+
+Format de sortie :
+Parquet, format de reference pour les donnees preparees et harmonisees.
+
+Resultat :
+Donnees preparees et controles, avec anomalies documentees.
+
+FLUX 4 — SILVER VERS GOLD
+
+Source :
+Donnees validees de la zone Silver.
+
+Mecanisme :
+Apache Spark / PySpark.
+
+Traitements :
+- Agregation des ventes.
+- Analyse par magasin.
+- Analyse par produit.
+- Analyse des retours.
+- Analyse des stocks.
+- Calcul des indicateurs metier.
+
+Destination :
+Zone Gold.
+
+Format de reference :
+Parquet.
+
+Resultat :
+Jeux de donnees analytiques adaptes aux besoins metier.
+
+FLUX 5 — GOLD VERS UTILISATEURS
+
+Source :
+Jeux analytiques de la zone Gold.
+
+Consommateurs :
+Direction, responsables de magasins et analystes.
+
+Usages :
+- Suivi des ventes.
+- Comparaison des magasins.
+- Analyse des performances produits.
+- Suivi des retours.
+- Analyse des stocks.
+
+Restitution :
+Tableaux de bord et outils analytiques, a definir.
+
+4. STRATEGIE DE TRAITEMENT
+
+Le traitement batch est retenu pour les fichiers disponibles.
+Les sources sont des fichiers de donnees a collecter et traiter
+par lots.
+
+Aucun besoin de traitement en continu n'est confirme dans
+le contexte actuel.
+
+Les donnees de data_refresh sont identifiees separement.
+Leur integration doit tenir compte de leur nature et de leur
+periode de mise a jour afin d'eviter les doublons ou melanges
+injustifies avec les donnees principales.
+
+5. GESTION DES ERREURS
+
+Les fichiers non conformes sont identifies et isoles.
+Les lignes invalides sont journalisees.
+Les anomalies sont documentees avant toute correction.
+Les donnees sources originales restent conservees en Bronze.
+
+Chaque execution doit permettre de retrouver :
+- La date et l'heure du traitement.
+- Le fichier source.
+- Le nombre de lignes lues.
+- Le nombre de lignes rejetees.
+- Le nombre de lignes traitees.
+- Le statut de l'execution.
+
+6. LIMITES ET HYPOTHESES
+
+Apache NiFi, HDFS et Spark sont les mecanismes proposes
+dans l'architecture cible du parcours.
+
+Leur deploiement effectif n'est pas affirme dans ce document.
+
+Les relations entre tables restent a confirmer a partir
+des schemas et des controles de donnees.
+
+Les outils de restitution ne sont pas encore imposes.
+
+CONCLUSION
+
+Le flux separe l'ingestion, la conservation brute,
+la preparation et l'exploitation analytique.
+
+Cette separation facilite la tracabilite, la qualite
+et l'evolution de la plateforme.

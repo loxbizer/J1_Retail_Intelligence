@@ -1,0 +1,182 @@
+RETAIL INTELLIGENCE PLATFORM
+UC-02 — POSITIONNEMENT DES COMPOSANTS TECHNOLOGIQUES
+
+1. OBJECTIF
+
+Identifier les composants technologiques de l'architecture,
+leur rôle et leur statut dans le parcours pédagogique.
+
+Les composants sont distingués selon quatre catégories :
+- Obligatoire.
+- Format de référence.
+- Facultatif.
+- Présentation / étude ou objectif cloud.
+
+2. MATRICE DE POSITIONNEMENT
+
+LINUX / UBUNTU
+Statut : OBLIGATOIRE
+Rôle : Environnement local de référence du parcours.
+Couche : Infrastructure.
+Justification : Fournit l'environnement d'exécution des outils.
+
+PYTHON
+Statut : OBLIGATOIRE
+Rôle : Exploration, scripts et traitements de données.
+Couche : Préparation et traitement.
+Justification : Permet d'inspecter et de manipuler les données.
+
+HADOOP / HDFS
+Statut : OBLIGATOIRE
+Rôle : Stockage distribué des données.
+Couche : Stockage.
+Justification : Constitue le socle de stockage distribué du parcours.
+
+APACHE NIFI
+Statut : OBLIGATOIRE
+Rôle : Ingestion et orchestration des flux.
+Couche : Ingestion.
+Justification : Permet de collecter et transférer les données
+vers les zones de stockage.
+
+APACHE SPARK / PYSPARK
+Statut : OBLIGATOIRE
+Rôle : Traitements distribués et transformations.
+Couche : Traitement.
+Justification : Permet de nettoyer, transformer et agréger
+les données pour les usages analytiques.
+
+PARQUET
+Statut : FORMAT DE REFERENCE
+Rôle : Stockage analytique colonnaire.
+Couche : Stockage analytique.
+Justification : Format adapté à la lecture et à l'exploitation
+de données structurées pour l'analyse.
+
+HBASE
+Statut : FACULTATIF
+Rôle : Stockage NoSQL.
+Couche : Stockage complémentaire.
+Justification : Approfondissement du parcours.
+Son utilisation n'est pas nécessaire à la validation du socle.
+
+PDGF
+Statut : SELON KIT DISPONIBLE
+Rôle : Génération de données si le kit le permet.
+Couche : Sources de données.
+Justification : Dépend de la disponibilité de l'environnement
+et du kit fourni.
+
+DELTA LAKE
+Statut : FACULTATIF
+Rôle : Approfondissement de l'approche Lakehouse.
+Couche : Stockage analytique.
+Justification : Peut apporter des mécanismes supplémentaires
+de gestion des données, mais ne conditionne pas la validation.
+
+AZURE DATA LAKE STORAGE GEN2 (ADLS GEN2)
+Statut : OBJECTIF OBLIGATOIRE DU PARCOURS
+Rôle : Stockage des données dans la cible cloud Azure.
+Couche : Stockage cloud.
+Justification : Déclinaison cloud du stockage de données.
+Son étude et sa mise en oeuvre sont prévues dans la progression.
+
+AZURE DATA FACTORY
+Statut : PRESENTATION / ETUDE
+Rôle : Intégration et orchestration des flux cloud.
+Couche : Ingestion cloud.
+Justification : Service étudié pour comprendre l'orchestration
+des traitements dans Azure.
+Son déploiement complet n'est pas exigé dans ce TP.
+
+AZURE SYNAPSE
+Statut : PRESENTATION / ETUDE
+Rôle : Services analytiques cloud.
+Couche : Analyse et exploitation.
+Justification : Permet d'étudier les possibilités d'analyse
+et d'exploitation des données dans Azure.
+Son déploiement complet n'est pas exigé dans ce TP.
+
+3. REPARTITION PAR COUCHE
+
+Sources :
+
+- Fichiers TPCx-BB.
+
+Génération de données :
+
+- PDGF : selon la disponibilité du kit.
+
+
+Ingestion :
+- Apache NiFi.
+
+Stockage local :
+- Hadoop / HDFS.
+
+Exploration et préparation :
+- Python.
+- Apache Spark / PySpark.
+
+Stockage analytique :
+
+- Parquet : format de reference.
+- Delta Lake : approfondissement facultatif.
+
+Stockage NoSQL complementaire :
+
+- HBase : approfondissement facultatif.
+
+Stockage cloud :
+- Azure Data Lake Storage Gen2.
+
+Ingestion et analyse cloud :
+- Azure Data Factory : présentation / étude.
+- Azure Synapse : présentation / étude.
+
+Environnement :
+- Linux / Ubuntu.
+
+4. COMPOSANTS INDISPENSABLES ET APPROFONDISSEMENTS
+
+Le socle obligatoire repose sur Linux / Ubuntu, Python,
+Hadoop / HDFS, Apache NiFi et Apache Spark / PySpark.
+
+Parquet constitue le format de référence.
+
+HBase et Delta Lake sont des approfondissements facultatifs.
+Ils ne doivent pas être considérés comme des prérequis.
+
+ADLS Gen2 constitue un objectif obligatoire du parcours
+pour la déclinaison cloud.
+
+Azure Data Factory et Azure Synapse sont présentés et étudiés.
+Leur déploiement complet n'est pas demandé dans ce TP.
+
+5. JUSTIFICATION
+
+Cette répartition permet de distinguer les outils nécessaires
+au parcours de base des technologies complémentaires.
+
+Elle évite d'ajouter une complexité inutile à l'architecture
+et permet de construire progressivement une plateforme
+de traitement et d'analyse.
+
+6. LIMITES
+
+Ce positionnement décrit le rôle prévu des composants
+dans l'architecture cible.
+
+Il ne signifie pas que les outils ont tous été installés,
+configurés ou déployés.
+
+Les choix d'implémentation seront précisés dans les étapes
+suivantes du parcours.
+
+CONCLUSION
+
+Les composants obligatoires constituent le socle technique.
+Les composants facultatifs apportent des possibilités
+d'approfondissement.
+Les services Azure préparent la déclinaison cloud
+de la plateforme.

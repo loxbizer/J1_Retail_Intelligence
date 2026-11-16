@@ -1,0 +1,264 @@
+RETAIL INTELLIGENCE PLATFORM
+UC-02 — TRAJECTOIRE DE L'ENVIRONNEMENT LOCAL VERS AZURE
+
+1. OBJECTIF
+
+L'objectif est de proposer une évolution de l'architecture
+locale vers une architecture cloud Microsoft Azure.
+
+Cette évolution doit conserver les principes de l'architecture :
+ingestion, stockage, préparation, transformation et exploitation
+analytique.
+
+La cible Azure présentée est une conception logique.
+Elle ne correspond pas à un déploiement réellement effectué.
+
+2. COMPARAISON DES ENVIRONNEMENTS
+
+ENVIRONNEMENT LOCAL
+
+Système :
+Linux / Ubuntu.
+
+Ingestion :
+Apache NiFi.
+
+Stockage distribué :
+Hadoop / HDFS.
+
+Traitement :
+Python et Apache Spark / PySpark.
+
+Format analytique :
+Parquet.
+
+Avantages :
+- Environnement adapté à l'apprentissage.
+- Maîtrise de la configuration technique.
+- Expérimentation des composants du parcours.
+- Compréhension des mécanismes de stockage distribué.
+
+Limites :
+- Gestion de l'infrastructure à la charge de l'équipe.
+- Capacité dépendante des ressources disponibles.
+- Maintenance et supervision à organiser.
+- Extension des ressources nécessitant une intervention.
+
+ENVIRONNEMENT CLOUD AZURE
+
+Stockage :
+Azure Data Lake Storage Gen2 (ADLS Gen2).
+
+Ingestion et orchestration :
+Azure Data Factory, présenté et étudié dans le parcours.
+
+Traitements :
+Apache Spark / PySpark selon l'environnement retenu.
+Azure Synapse est présenté et étudié pour les usages analytiques.
+
+Format analytique :
+Parquet.
+
+Avantages :
+- Stockage cloud évolutif.
+- Possibilité de centraliser les données.
+- Services managés disponibles.
+- Intégration avec les services analytiques Azure.
+
+Limites :
+- Coûts liés au stockage, aux traitements et aux transferts.
+- Gestion des identités et des droits nécessaire.
+- Dépendance aux services et à la configuration cloud.
+- Besoin de supervision et de gouvernance.
+
+3. CORRESPONDANCE DES COMPOSANTS
+
+ENVIRONNEMENT LOCAL :
+Linux / Ubuntu
+CIBLE AZURE :
+Environnement cloud Azure.
+
+ENVIRONNEMENT LOCAL :
+Hadoop / HDFS
+CIBLE AZURE :
+Azure Data Lake Storage Gen2 pour le stockage des données.
+
+ENVIRONNEMENT LOCAL :
+Apache NiFi
+CIBLE AZURE :
+Azure Data Factory peut assurer des fonctions
+d'intégration et d'orchestration des flux.
+
+ENVIRONNEMENT LOCAL :
+Python / Apache Spark / PySpark
+CIBLE AZURE :
+Traitements Python et Spark dans un environnement
+compatible Azure, à préciser selon les services retenus.
+
+ENVIRONNEMENT LOCAL :
+Parquet
+CIBLE AZURE :
+Parquet conservé comme format de stockage analytique.
+
+ENVIRONNEMENT LOCAL :
+Traitements et préparation des données
+CIBLE AZURE :
+Services de traitement et d'analyse adaptés à la cible,
+avec Azure Synapse présenté dans le parcours.
+
+Cette correspondance est fonctionnelle.
+Elle ne signifie pas que les outils possèdent exactement
+les mêmes mécanismes ou fonctionnalités.
+
+4. ORGANISATION DES ZONES DANS AZURE
+
+BRONZE / RAW
+
+Emplacement proposé :
+ADLS Gen2.
+
+Rôle :
+Conserver les fichiers sources originaux.
+
+Contenu :
+Fichiers TPCx-BB et futures sources complémentaires.
+
+Règles :
+- Préserver les fichiers d'origine.
+- Identifier la provenance.
+- Enregistrer les dates d'ingestion.
+- Organiser les données par source et période.
+
+SILVER
+
+Emplacement proposé :
+ADLS Gen2.
+
+Rôle :
+Conserver les données nettoyées et harmonisées.
+
+Traitements :
+- Contrôle des structures.
+- Gestion des valeurs manquantes.
+- Détection des doublons.
+- Harmonisation des types.
+- Validation des relations.
+
+GOLD
+
+Emplacement proposé :
+ADLS Gen2.
+
+Rôle :
+Conserver les jeux de données destinés aux usages analytiques.
+
+Contenu :
+- Agrégations des ventes.
+- Indicateurs par magasin.
+- Analyses produits.
+- Analyses des retours.
+- Indicateurs de stock.
+
+Format de référence :
+Parquet.
+
+5. TRAJECTOIRE DE MIGRATION
+
+ETAPE 1 — PREPARATION
+
+- Vérifier les sources disponibles.
+- Identifier les formats et les volumes.
+- Documenter les relations et les limites.
+- Définir les règles de qualité.
+- Préparer les conventions de nommage.
+
+ETAPE 2 — MISE EN PLACE DU STOCKAGE
+
+- Préparer ADLS Gen2.
+- Créer les espaces Bronze, Silver et Gold.
+- Définir les droits d'accès.
+- Organiser les répertoires et les métadonnées.
+
+ETAPE 3 — INGESTION
+
+- Définir les flux d'intégration.
+- Étudier l'utilisation d'Azure Data Factory.
+- Transférer les sources vers Bronze.
+- Vérifier la présence et l'intégrité des fichiers.
+
+ETAPE 4 — TRANSFORMATION
+
+- Mettre en place les traitements Python / Spark adaptés.
+- Nettoyer et harmoniser les données.
+- Contrôler les anomalies.
+- Produire les données Silver.
+
+ETAPE 5 — EXPLOITATION ANALYTIQUE
+
+- Construire les jeux de données Gold.
+- Utiliser Parquet comme format de référence.
+- Étudier les possibilités analytiques d'Azure Synapse.
+- Préparer l'accès aux indicateurs métier.
+
+ETAPE 6 — VALIDATION
+
+- Comparer les résultats locaux et cloud.
+- Vérifier les volumes transférés.
+- Contrôler la qualité des données.
+- Vérifier les droits d'accès.
+- Mesurer les coûts et les performances.
+
+6. SECURITE ET GOUVERNANCE CLOUD
+
+La cible Azure devra intégrer :
+
+- Gestion des identités et des accès.
+- Attribution des droits selon les rôles.
+- Protection des données sensibles.
+- Sécurisation des transferts.
+- Journalisation des opérations.
+- Supervision des traitements.
+- Suivi des coûts de stockage et de calcul.
+
+Les règles de sécurité devront être adaptées
+aux exigences réelles de l'entreprise.
+
+7. JUSTIFICATION DU CHOIX
+
+ADLS Gen2 constitue l'objectif de stockage cloud
+du parcours.
+
+Le maintien des zones Bronze, Silver et Gold permet
+de conserver une organisation cohérente entre
+l'environnement local et la cible cloud.
+
+Parquet est conservé comme format de référence
+pour les données analytiques.
+
+Azure Data Factory et Azure Synapse sont étudiés
+comme services complémentaires dans la déclinaison cloud.
+
+8. LIMITES ET HYPOTHESES
+
+Les services Azure présentés constituent une proposition
+d'architecture logique.
+
+Azure Data Factory et Azure Synapse sont des composants
+présentés et étudiés dans le parcours ; leur déploiement
+complet n'est pas exigé dans ce TP.
+
+Les coûts, les performances, les régions Azure,
+les capacités nécessaires et les règles de sécurité
+restent à préciser.
+
+La migration réelle nécessiterait une configuration,
+des tests et une validation technique.
+
+CONCLUSION
+
+La cible Azure reprend les principes de l'architecture locale
+tout en s'appuyant sur des services cloud.
+
+Cette trajectoire permet d'envisager une plateforme évolutive,
+organisée et gouvernée, sans confondre conception logique
+et déploiement réel.

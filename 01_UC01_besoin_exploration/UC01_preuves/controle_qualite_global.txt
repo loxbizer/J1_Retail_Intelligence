@@ -1,0 +1,183 @@
+UC01 — QUALIFICATION DES DONNÉES
+Source principale : répertoire data/
+Format .dat : données séparées par le caractère |
+En-têtes : non présumés ; première ligne utilisée pour déterminer
+le nombre de colonnes attendu.
+
+Fichiers .dat analysés : 23
+Nombre total de lignes observées : 33907536
+Taille totale des fichiers du répertoire : 976.99 Mo
+
+RÉSULTATS PAR TABLE
+
+TABLE : customer/customer.dat
+Lignes analysées : 99000
+Colonnes observées : 18
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 333
+Taille : 12.664 Mo
+
+TABLE : customer_address/customer_address.dat
+Lignes analysées : 49500
+Colonnes observées : 13
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 74
+Taille : 5.138 Mo
+
+TABLE : customer_demographics/customer_demographics.dat
+Lignes analysées : 1920800
+Colonnes observées : 9
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 4022
+Taille : 74.151 Mo
+
+TABLE : date_dim/date_dim.dat
+Lignes analysées : 109573
+Colonnes observées : 28
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 0
+Taille : 14.683 Mo
+
+TABLE : household_demographics/household_demographics.dat
+Lignes analysées : 7200
+Colonnes observées : 5
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 7
+Taille : 0.148 Mo
+
+TABLE : income_band/income_band.dat
+Lignes analysées : 20
+Colonnes observées : 3
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 0
+Taille : 0.0 Mo
+
+TABLE : inventory/inventory.dat
+Lignes analysées : 23255100
+Colonnes observées : 4
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 5999
+Taille : 405.258 Mo
+
+TABLE : item/item.dat
+Lignes analysées : 17820
+Colonnes observées : 22
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 17838
+Taille : 6.484 Mo
+
+TABLE : item_marketprices/item_marketprices.dat
+Lignes analysées : 89100
+Colonnes observées : 6
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 59
+Taille : 4.007 Mo
+
+TABLE : product_reviews/product_reviews.dat
+Lignes analysées : 89991
+Colonnes observées : 8
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 5
+Taille : 53.745 Mo
+
+TABLE : promotion/promotion.dat
+Lignes analysées : 300
+Colonnes observées : 19
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 1
+Taille : 0.044 Mo
+
+TABLE : reason/reason.dat
+Lignes analysées : 35
+Colonnes observées : 3
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 0
+Taille : 0.003 Mo
+
+TABLE : ship_mode/ship_mode.dat
+Lignes analysées : 20
+Colonnes observées : 6
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 0
+Taille : 0.001 Mo
+
+TABLE : store/store.dat
+Lignes analysées : 12
+Colonnes observées : 29
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 12
+Taille : 0.003 Mo
+
+TABLE : store_returns/store_returns.dat
+Lignes analysées : 37902
+Colonnes observées : 20
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 89
+Taille : 4.136 Mo
+
+TABLE : store_sales/store_sales.dat
+Lignes analysées : 667579
+Colonnes observées : 23
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 1139
+Taille : 88.467 Mo
+
+TABLE : time_dim/time_dim.dat
+Lignes analysées : 86400
+Colonnes observées : 10
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 50400
+Taille : 4.871 Mo
+
+TABLE : warehouse/warehouse.dat
+Lignes analysées : 5
+Colonnes observées : 14
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 0
+Taille : 0.001 Mo
+
+TABLE : web_clickstreams/web_clickstreams.dat
+Lignes analysées : 6770550
+Colonnes observées : 6
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 8956123
+Taille : 170.443 Mo
+
+TABLE : web_page/web_page.dat
+Lignes analysées : 60
+Colonnes observées : 14
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 60
+Taille : 0.008 Mo
+
+TABLE : web_returns/web_returns.dat
+Lignes analysées : 38487
+Colonnes observées : 24
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 271
+Taille : 5.134 Mo
+
+TABLE : web_sales/web_sales.dat
+Lignes analysées : 668052
+Colonnes observées : 34
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 3021
+Taille : 127.593 Mo
+
+TABLE : web_site/web_site.dat
+Lignes analysées : 30
+Colonnes observées : 26
+Lignes avec nombre de colonnes incorrect : 0
+Champs vides : 30
+Taille : 0.008 Mo
+
+MÉTHODE ET LIMITES
+Les fichiers .dat ont été parcourus intégralement.
+Les lignes vides ont été ignorées.
+Les champs vides sont comptés cellule par cellule.
+Le nombre de colonnes attendu est déterminé par la première
+ligne non vide de chaque fichier.
+Ce contrôle ne confirme pas les clés primaires ni les relations.
+Les valeurs répétées ne sont pas automatiquement des doublons métier.
+Les types métier et les significations des colonnes restent à documenter.
+Les fichiers complémentaires sont inventoriés séparément.

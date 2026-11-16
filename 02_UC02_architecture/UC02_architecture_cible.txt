@@ -1,0 +1,265 @@
+RETAIL INTELLIGENCE PLATFORM
+UC-02 — ARCHITECTURE LOGIQUE CIBLE
+
+1. OBJECTIF
+
+Proposer une plateforme analytique permettant de conserver,
+préparer et exploiter les données commerciales de Retail Intelligence.
+
+L'architecture repose sur un Data Lake organisé en trois zones :
+Bronze, Silver et Gold.
+
+2. SCHEMA GENERAL
+
++----------------------------------------------+
+|              SOURCES DE DONNEES              |
+|                                              |
+| TPCx-BB : data/                              |
+| TPCx-BB : data_refresh/                      |
+| Sources complementaires futures              |
++----------------------+-----------------------+
+                       |
+                       v
++----------------------------------------------+
+|                 INGESTION                    |
+|                                              |
+| Apache NiFi                                 |
+| Collecte, transfert et orchestration         |
++----------------------+-----------------------+
+                       |
+                       v
++----------------------------------------------+
+|              HDFS - ZONE BRONZE              |
+|                                              |
+| Donnees brutes conservees                    |
+| Formats d'origine et provenance              |
+| Aucune modification destructive             |
++----------------------+-----------------------+
+                       |
+                       v
++----------------------------------------------+
+|           PREPARATION ET CONTROLES           |
+|                                              |
+| Python / Apache Spark / PySpark              |
+| Verification, nettoyage, harmonisation       |
++----------------------+-----------------------+
+                       |
+                       v
++----------------------------------------------+
+|              HDFS - ZONE SILVER              |
+|                                              |
+| Donnees nettoyees et structurees             |
+| Types et formats harmonises
+Format de reference : Parquet                 |
+| Controles de qualite documentes              |
++----------------------+-----------------------+
+                       |
+                       v
++----------------------------------------------+
+|          TRANSFORMATIONS ANALYTIQUES        |
+|                                              |
+| Apache Spark / PySpark                       |
+| Agregations et calcul des indicateurs        |
++----------------------+-----------------------+
+                       |
+                       v
++----------------------------------------------+
+|               ZONE GOLD                      |
+|                                              |
+| Jeux de donnees analytiques                  |
+| Fichiers Parquet                             |
+| Indicateurs et donnees preparees pour la BI  |
++----------------------+-----------------------+
+                       |
+                       v
++----------------------------------------------+
+|             EXPOSITION                       |
+|                                              |
+| Tableaux de bord et analyses                 |
+| Ventes, magasins, produits, clients, stocks  |
++----------------------------------------------+
+
+GOUVERNANCE TRANSVERSALE :
+Qualite - Traçabilite - Documentation - Securite
+Gestion des acces - Supervision
+
+
+3. SOURCES REELLES ET VOLUMETRIE OBSERVEE
+
+Jeu principal : data/
+
+- 23 fichiers de donnees au format DAT.
+- 1 fichier complementaire d'audit CSV : item_marketprices_audit.csv.
+- Domaines observes : clients, adresses, demographie, dates,
+  produits, prix, magasins, ventes magasin, retours magasin,
+  stocks, entrepots, navigation web, ventes web et retours web.
+- Volume global observe dans l'exploration UC01 : environ 976,99 Mo.
+- Les formats DAT sont conserves en Bronze dans leur format d'origine.
+
+Jeu de rafraichissement : data_refresh/
+
+- 11 fichiers DAT distincts du jeu principal.
+- 311 714 lignes analysees au total.
+- 0 ligne avec un nombre de colonnes incorrect sur les 11 fichiers.
+- Taille totale observee : environ 8,96 Mo.
+- Domaines : clients, adresses, produits, prix, stocks,
+  ventes magasin, retours magasin, navigation web,
+  ventes web et retours web.
+
+Principales mesures de data_refresh/ :
+
+- inventory.dat : 234 900 lignes, 4 colonnes.
+- web_clickstreams.dat : 68 988 lignes, 6 colonnes.
+- web_sales.dat : 6 879 lignes, 34 colonnes.
+- store_sales.dat : 6 632 lignes, 23 colonnes.
+- customer.dat : 1 000 lignes, 18 colonnes.
+- product_reviews.dat : 909 lignes, 8 colonnes.
+- item_marketprices.dat : 900 lignes, 6 colonnes.
+- customer_address.dat : 500 lignes, 13 colonnes.
+- web_returns.dat : 400 lignes, 24 colonnes.
+- store_returns.dat : 426 lignes, 20 colonnes.
+- item.dat : 180 lignes, 22 colonnes.
+
+Positionnement dans l'architecture :
+
+- Les deux jeux sont ingeres et identifies separement en Bronze.
+- La provenance indique le repertoire d'origine : data ou data_refresh.
+- Les controles Silver comparent les schemas et les formats avant
+  toute harmonisation ou rapprochement.
+- Aucun melange ni remplacement automatique des donnees n'est effectue.
+- Les donnees validees alimentent ensuite les jeux analytiques Gold.
+
+Limites des mesures :
+
+- Les volumes de data/ et data_refresh/ sont mesures separement.
+- Le controle de structure ne valide pas a lui seul les cles
+  primaires, les relations ou la signification metier.
+- Les champs vides et les valeurs repetees doivent etre interpretes
+  selon chaque table avant toute correction.
+
+4. DESCRIPTION DES ZONES
+
+BRONZE / RAW
+
+Role :
+Conserver les donnees telles qu'elles sont recues.
+
+Contenu :
+Fichiers sources TPCx-BB, notamment les fichiers DAT.
+Les donnees de data_refresh sont identifiees separement.
+
+Regles :
+- Conserver les fichiers originaux.
+- Enregistrer la date d'ingestion.
+- Identifier la source et le nom du fichier.
+- Ne pas ecraser les donnees historiques.
+- Documenter les erreurs d'ingestion.
+
+SILVER
+
+Role :
+Fournir des donnees fiables et harmonisees.
+
+Traitements :
+- Controle des formats et des types.
+- Identification des valeurs manquantes.
+- Detection des doublons.
+- Verification des identifiants candidats.
+- Harmonisation des colonnes et des formats.
+- Validation des relations entre tables.
+
+Les relations non confirmees restent des hypotheses
+jusqu'a leur validation.
+
+GESTION DES REJETS
+
+Les fichiers non conformes sont isoles dans une zone de rejet.
+Les lignes invalides sont ecartees de Silver et journalisees.
+Chaque rejet conserve sa provenance et son motif.
+Les donnees originales restent conservees en Bronze.
+Les anomalies sont documentees avant toute correction.
+
+GOLD
+
+Role :
+Mettre a disposition des donnees adaptees aux analyses métier.
+
+Exemples de jeux analytiques :
+- Ventes par magasin et par periode.
+- Evolution des ventes par produit.
+- Analyse des retours.
+- Analyse des stocks.
+- Indicateurs de performance commerciale.
+
+Les indicateurs sont construits uniquement apres validation
+des règles de calcul et des données nécessaires.
+
+5. POSITIONNEMENT DES TECHNOLOGIES
+
+Linux / Ubuntu :
+Environnement local de reference du parcours.
+
+Python :
+Exploration, scripts et traitements de donnees.
+
+Hadoop / HDFS :
+Stockage distribue des donnees.
+
+Apache NiFi :
+Ingestion et orchestration des flux.
+
+Apache Spark / PySpark :
+Traitements distribues et transformations.
+
+Parquet :
+Format de stockage colonnaire de reference.
+
+HBase :
+Approfondissement facultatif NoSQL.
+
+Delta Lake :
+Approfondissement facultatif de type Lakehouse.
+
+ADLS Gen2 :
+Objectif de stockage dans la cible cloud Azure.
+
+Azure Data Factory :
+Service presente et etudie pour l'integration cloud.
+
+Azure Synapse :
+Service presente et etudie pour les usages analytiques.
+
+6. GOUVERNANCE ET SUPERVISION
+
+Chaque traitement doit permettre de retrouver :
+- La source d'origine.
+- La date d'ingestion.
+- Le traitement applique.
+- Le nombre de lignes traitees.
+- Les anomalies detectees.
+- Le statut du traitement.
+
+Les acces doivent etre controles selon les roles.
+Les données sensibles doivent faire l'objet de protections
+adaptees et d'une limitation des acces.
+
+7. JUSTIFICATION DU CHOIX
+
+Cette architecture permet de conserver les donnees brutes,
+de separer les traitements de preparation des usages analytiques
+et de construire progressivement des indicateurs fiables.
+
+Elle correspond aux technologies obligatoires du parcours :
+Linux, Python, Hadoop/HDFS, Apache NiFi et Spark/PySpark.
+
+Le format Parquet est retenu pour les donnees analytiques.
+
+8. LIMITES
+
+Cette architecture est une conception logique.
+Elle ne constitue pas un deploiement deja realise.
+
+Les performances, la volumetrie future, les besoins de securite
+et les outils de restitution restent a confirmer.
+
+La cible Azure sera detaillee dans le livrable local vers Azure.

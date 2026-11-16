@@ -1,0 +1,44 @@
+RETAIL INTELLIGENCE PLATFORM
+UC-01 — QUESTIONS DECISIONNELLES
+
+Les profils ci-dessous sont proposés à partir du scénario et restent à valider avec le commanditaire.
+
+PROFIL 1 — DIRECTION COMMERCIALE
+Responsabilité : piloter la performance commerciale globale.
+
+Q1. Comment évolue le chiffre d'affaires sur les périodes étudiées ?
+Décision associée : identifier les périodes de progression ou de recul et adapter les priorités commerciales.
+Priorité : indispensable.
+
+Q2. Quels magasins contribuent le plus ou le moins à la performance commerciale ?
+Décision associée : approfondir l'analyse des magasins et définir des actions d'accompagnement.
+Priorité : indispensable.
+
+PROFIL 2 — RESPONSABLE DE MAGASIN
+Responsabilité : suivre l'activité et la performance de son magasin.
+
+Q3. Quels produits représentent les plus grandes quantités vendues dans le magasin ?
+Décision associée : ajuster les priorités de mise en avant et examiner les besoins de stock.
+Priorité : utile.
+
+Q4. Comment évoluent les ventes du magasin entre deux périodes comparables ?
+Décision associée : adapter les actions commerciales et analyser les variations observées.
+Priorité : indispensable.
+
+PROFIL 3 — EQUIPE DATA / ANALYSTE
+Responsabilité : fiabiliser les données et fournir des indicateurs interprétables.
+
+Q5. Les données disponibles permettent-elles de calculer un panier moyen fiable ?
+Décision associée : valider ou non la publication de cet indicateur et documenter les données manquantes.
+Priorité : indispensable.
+
+Q6. Les retours peuvent-ils être rapprochés des ventes et des produits concernés ?
+Décision associée : déterminer si une analyse des retours par produit et période est exploitable.
+Priorité : utile.
+
+QUESTIONS COMPLEMENTAIRES
+- Les données de navigation permettent-elles d'étudier certains comportements des visiteurs ?
+- Peut-on analyser les niveaux de stock par produit et lieu ?
+- Quelles informations permettent de caractériser les clients ?
+
+Ces questions complémentaires ne sont exploitables que si les colonnes et relations nécessaires sont vérifiées.

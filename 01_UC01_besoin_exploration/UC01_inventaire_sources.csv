@@ -1,0 +1,25 @@
+﻿Fichier,Format,Taille_Mo,Type
+customer/customer.dat,.dat,12.664,Table de données
+customer_address/customer_address.dat,.dat,5.138,Table de données
+customer_demographics/customer_demographics.dat,.dat,74.151,Table de données
+date_dim/date_dim.dat,.dat,14.683,Table de données
+household_demographics/household_demographics.dat,.dat,0.148,Table de données
+income_band/income_band.dat,.dat,0.0,Table de données
+inventory/inventory.dat,.dat,405.258,Table de données
+item/item.dat,.dat,6.484,Table de données
+item_marketprices/item_marketprices.dat,.dat,4.007,Table de données
+item_marketprices/item_marketprices_audit.csv,.csv,0.0,Fichier complémentaire à examiner
+product_reviews/product_reviews.dat,.dat,53.745,Table de données
+promotion/promotion.dat,.dat,0.044,Table de données
+reason/reason.dat,.dat,0.003,Table de données
+ship_mode/ship_mode.dat,.dat,0.001,Table de données
+store/store.dat,.dat,0.003,Table de données
+store_returns/store_returns.dat,.dat,4.136,Table de données
+store_sales/store_sales.dat,.dat,88.467,Table de données
+time_dim/time_dim.dat,.dat,4.871,Table de données
+warehouse/warehouse.dat,.dat,0.001,Table de données
+web_clickstreams/web_clickstreams.dat,.dat,170.443,Table de données
+web_page/web_page.dat,.dat,0.008,Table de données
+web_returns/web_returns.dat,.dat,5.134,Table de données
+web_sales/web_sales.dat,.dat,127.593,Table de données
+web_site/web_site.dat,.dat,0.008,Table de données

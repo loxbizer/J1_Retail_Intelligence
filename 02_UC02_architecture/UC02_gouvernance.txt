@@ -1,0 +1,174 @@
+RETAIL INTELLIGENCE PLATFORM
+UC-02 — GOUVERNANCE DES DONNEES
+
+1. OBJECTIF
+
+La gouvernance définit les règles permettant de garantir
+la qualité, la sécurité, la traçabilité et la bonne utilisation
+des données de Retail Intelligence.
+
+Elle concerne toutes les étapes :
+ingestion, stockage, préparation et exploitation analytique.
+
+2. QUALITE DES DONNEES
+
+Les contrôles sont réalisés principalement lors du passage
+de la zone Bronze vers la zone Silver.
+
+Contrôles proposés :
+
+- Vérification de la structure des fichiers.
+- Contrôle du nombre de colonnes attendu.
+- Vérification des types de données.
+- Détection des valeurs manquantes.
+- Recherche des doublons.
+- Détection des valeurs incohérentes.
+- Vérification des identifiants candidats.
+- Contrôle des relations entre les tables.
+
+Les anomalies sont documentées et ne doivent pas être
+corrigées silencieusement.
+
+Les règles de qualité doivent être adaptées à chaque table
+et à chaque domaine métier.
+
+3. TRAÇABILITE ET PROVENANCE
+
+Chaque fichier ingéré doit être associé à des informations
+permettant de retrouver son origine.
+
+Métadonnées proposées :
+
+- Nom du fichier source.
+- Répertoire d'origine.
+- Date et heure d'ingestion.
+- Format du fichier.
+- Taille du fichier.
+- Identifiant du traitement.
+- Nombre de lignes lues.
+- Nombre de lignes rejetées.
+- Statut du traitement.
+
+Les transformations doivent être documentées afin de pouvoir
+retrouver le cheminement entre les données sources et les
+indicateurs produits.
+
+4. SECURITE ET GESTION DES ACCES
+
+Les accès aux données doivent être attribués selon les rôles
+et les responsabilités des utilisateurs.
+
+Principes proposés :
+
+- Limiter les accès aux seules données nécessaires.
+- Séparer les droits de lecture et de modification.
+- Protéger les données sensibles.
+- Sécuriser les échanges entre composants.
+- Contrôler les accès aux espaces de stockage.
+- Conserver des traces des opérations importantes.
+
+Les règles précises de conservation et de protection devront
+être définies selon la nature réelle des données et les
+exigences réglementaires applicables.
+
+5. DOCUMENTATION ET METADONNEES
+
+Chaque table et chaque jeu de données doit être documenté.
+
+Informations à conserver :
+
+- Nom de la source.
+- Description fonctionnelle.
+- Colonnes et types.
+- Identifiants candidats.
+- Relations confirmées ou supposées.
+- Règles de qualité.
+- Transformations effectuées.
+- Date de dernière mise à jour.
+
+Les relations non vérifiées doivent être identifiées comme
+des hypothèses et non comme des relations confirmées.
+
+6. ORGANISATION DE LA GOUVERNANCE PAR ZONE
+
+BRONZE
+
+- Conservation des fichiers originaux.
+- Enregistrement de la provenance.
+- Protection contre les modifications non autorisées.
+- Journalisation de l'ingestion.
+
+SILVER
+
+- Application des règles de qualité.
+- Documentation des anomalies.
+- Harmonisation des formats et des types.
+- Validation des relations entre tables.
+
+GOLD
+
+- Validation des indicateurs métier.
+- Documentation des formules de calcul.
+- Contrôle de cohérence des agrégations.
+- Gestion des droits d'accès aux données analytiques.
+
+7. RESPONSABILITES PROPOSEES
+
+Responsable métier :
+Définit les besoins, les indicateurs et les règles
+d'interprétation.
+
+Responsable des données :
+Veille à la qualité, à la documentation et à la cohérence
+des données.
+
+Equipe technique :
+Assure l'ingestion, le stockage, les traitements,
+la supervision et la traçabilité.
+
+Utilisateurs analytiques :
+Exploitent les données selon les droits accordés
+et signalent les incohérences constatées.
+
+Cette répartition constitue une proposition d'organisation
+à confirmer avec l'entreprise.
+
+8. SUPERVISION ET GESTION DES INCIDENTS
+
+Les traitements doivent être surveillés.
+
+Indicateurs de suivi proposés :
+
+- Nombre de fichiers ingérés.
+- Nombre de lignes traitées.
+- Nombre de lignes rejetées.
+- Durée des traitements.
+- Nombre d'anomalies détectées.
+- Nombre d'échecs d'exécution.
+
+En cas d'échec :
+- Identifier le traitement concerné.
+- Conserver les journaux.
+- Isoler les données non conformes.
+- Analyser la cause.
+- Corriger puis relancer le traitement si nécessaire.
+
+9. LIMITES ET HYPOTHESES
+
+Les règles présentées constituent une première proposition
+de gouvernance.
+
+Les rôles réels, les durées de conservation, les niveaux
+de confidentialité et les politiques d'accès restent
+à définir avec les responsables de l'entreprise.
+
+La gouvernance doit évoluer avec les sources et les usages
+de la plateforme.
+
+CONCLUSION
+
+La gouvernance permet de rendre les données fiables,
+traçables, documentées et accessibles de manière contrôlée.
+
+Elle constitue une condition essentielle pour produire
+des indicateurs décisionnels cohérents.
