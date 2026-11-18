@@ -1,0 +1,84 @@
+PREUVE HDFS - UC-03 - 17/11/2026
+
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/customer
+-rw-r--r--   1 root supergroup   13279063 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/customer/customer.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/customer_address
+-rw-r--r--   1 root supergroup    5387229 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/customer_address/customer_address.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/customer_demographics
+-rw-r--r--   1 root supergroup   77753083 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/customer_demographics/customer_demographics.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/date_dim
+-rw-r--r--   1 root supergroup   15395800 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/date_dim/date_dim.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/household_demographics
+-rw-r--r--   1 root supergroup     155100 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/household_demographics/household_demographics.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/income_band
+-rw-r--r--   1 root supergroup        327 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/income_band/income_band.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/inventory
+-rw-r--r--   1 root supergroup  424943678 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/inventory/inventory.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/item
+-rw-r--r--   1 root supergroup    6799286 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/item/item.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/item_marketprices
+-rw-r--r--   1 root supergroup    4201170 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/item_marketprices/item_marketprices.dat
+-rw-r--r--   1 root supergroup        273 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/item_marketprices/item_marketprices_audit.csv
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/product_reviews
+-rw-r--r--   1 root supergroup   56355389 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/product_reviews/product_reviews.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/promotion
+-rw-r--r--   1 root supergroup      46396 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/promotion/promotion.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/reason
+-rw-r--r--   1 root supergroup       3105 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/reason/reason.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/ship_mode
+-rw-r--r--   1 root supergroup       1220 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/ship_mode/ship_mode.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/store
+-rw-r--r--   1 root supergroup       3386 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/store/store.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/store_returns
+-rw-r--r--   1 root supergroup    4337400 2026-11-17 15:21 /retail-lake/raw/tpcxbb/initial/store_returns/store_returns.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/store_sales
+-rw-r--r--   1 root supergroup   92764700 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/store_sales/store_sales.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/time_dim
+-rw-r--r--   1 root supergroup    5107780 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/time_dim/time_dim.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/warehouse
+-rw-r--r--   1 root supergroup        584 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/warehouse/warehouse.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/web_clickstreams
+-rw-r--r--   1 root supergroup  178722140 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/web_clickstreams/web_clickstreams.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/web_page
+-rw-r--r--   1 root supergroup       8040 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/web_page/web_page.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/web_returns
+-rw-r--r--   1 root supergroup    5383513 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/web_returns/web_returns.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/web_sales
+-rw-r--r--   1 root supergroup  133790574 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/web_sales/web_sales.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/web_site
+-rw-r--r--   1 root supergroup       8838 2026-11-17 15:22 /retail-lake/raw/tpcxbb/initial/web_site/web_site.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/customer
+-rw-r--r--   1 root supergroup     134360 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/customer/customer.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/customer_address
+-rw-r--r--   1 root supergroup      54587 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/customer_address/customer_address.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/inventory
+-rw-r--r--   1 root supergroup    4292915 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/inventory/inventory.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/item
+-rw-r--r--   1 root supergroup      69173 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/item/item.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/item_marketprices
+-rw-r--r--   1 root supergroup      42547 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/item_marketprices/item_marketprices.dat
+-rw-r--r--   1 root supergroup     151009 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/item_marketprices/item_marketprices_audit.csv
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/product_reviews
+-rw-r--r--   1 root supergroup     573685 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/product_reviews/product_reviews.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/store_returns
+-rw-r--r--   1 root supergroup      48825 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/store_returns/store_returns.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/store_sales
+-rw-r--r--   1 root supergroup     922171 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/store_sales/store_sales.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/web_clickstreams
+-rw-r--r--   1 root supergroup    1821864 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/web_clickstreams/web_clickstreams.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/web_returns
+-rw-r--r--   1 root supergroup      55952 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/web_returns/web_returns.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/web_sales
+-rw-r--r--   1 root supergroup    1378425 2026-11-17 15:22 /retail-lake/raw/tpcxbb/refresh/web_sales/web_sales.dat
+
+===== VOLUMES =====
+          24           24            977.0 M /retail-lake/raw/tpcxbb/initial
+          12           12              9.1 M /retail-lake/raw/tpcxbb/refresh
+
+===== INTEGRITE SHA-256 =====
+CONFORME | data_refresh/web_sales/web_sales.dat | local=680d0ed18bd2039bde1df8dce3c0d9ab495021bb37e5dcefc284e9367e068e14 | hdfs=680d0ed18bd2039bde1df8dce3c0d9ab495021bb37e5dcefc284e9367e068e14
+
+BILAN : 36/36 fichiers conformes
+Anomalies : 0

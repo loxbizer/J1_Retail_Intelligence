@@ -1,0 +1,2 @@
+        none             inf            none             inf           24           25            977.0 M /retail/bronze/data
+        none             inf            none             inf           12           12              9.1 M /retail/bronze/data_refresh

@@ -1,0 +1,184 @@
+==================================================
+RAPPORT TECHNIQUE - RETAIL INTELLIGENCE - J2
+Date : mar. 17 nov. 2026 15:20:11 CET
+==================================================
+
+===== 1. SYSTEME =====
+ProductName:		macOS
+ProductVersion:		27.0
+BuildVersion:		26A8425
+
+--- JAVA ---
+openjdk version "21.0.13" 2026-10-20 LTS
+OpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)
+
+===== 2. CONTENEURS DOCKER =====
+NAMES             STATUS             PORTS
+retail-datanode   Up About an hour   0.0.0.0:9864->9864/tcp, [::]:9864->9864/tcp, 0.0.0.0:9866->9866/tcp, [::]:9866->9866/tcp
+retail-namenode   Up About an hour   0.0.0.0:9000->9000/tcp, [::]:9000->9000/tcp, 0.0.0.0:9870->9870/tcp, [::]:9870->9870/tcp
+
+===== 3. CONFIGURATION HADOOP =====
+infrastructure/hadoop/docker-compose.yml
+
+===== 4. ETAT HDFS =====
+Configured Capacity: 977843695616 (910.69 GB)
+Present Capacity: 924849700864 (861.33 GB)
+DFS Remaining: 923713855488 (860.28 GB)
+DFS Used: 1135845376 (1.06 GB)
+DFS Used%: 0.12%
+Replicated Blocks:
+	Under replicated blocks: 0
+	Blocks with corrupt replicas: 0
+	Missing blocks: 0
+	Missing blocks (with replication factor 1): 0
+	Low redundancy blocks with highest priority to recover: 0
+	Pending deletion blocks: 0
+Erasure Coded Block Groups:
+	Low redundancy block groups: 0
+	Block groups with corrupt internal blocks: 0
+	Missing block groups: 0
+	Low redundancy blocks with highest priority to recover: 0
+	Pending deletion blocks: 0
+
+-------------------------------------------------
+Live datanodes (1):
+
+Name: 172.18.0.3:9866 (retail-datanode.hadoop_retail-hadoop)
+Hostname: 10.74.1.185
+Decommission Status : Normal
+Configured Capacity: 977843695616 (910.69 GB)
+DFS Used: 1135845376 (1.06 GB)
+Non DFS Used: 3246772224 (3.02 GB)
+DFS Remaining: 923713855488 (860.28 GB)
+DFS Used%: 0.12%
+DFS Remaining%: 94.46%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 0
+Last contact: Tue Nov 17 14:20:11 UTC 2026
+Last Block Report: Tue Nov 17 13:14:10 UTC 2026
+Num of Blocks: 42
+
+
+
+===== 5. ARBORESCENCE RETAIL =====
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:30 /retail/bronze
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data
+-rw-r--r--   1 root supergroup      10244 2026-11-17 11:32 /retail/bronze/data/.DS_Store
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/customer
+-rw-r--r--   1 root supergroup   13279063 2026-11-17 11:32 /retail/bronze/data/customer/customer.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/customer_address
+-rw-r--r--   1 root supergroup    5387229 2026-11-17 11:32 /retail/bronze/data/customer_address/customer_address.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/customer_demographics
+-rw-r--r--   1 root supergroup   77753083 2026-11-17 11:32 /retail/bronze/data/customer_demographics/customer_demographics.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/date_dim
+-rw-r--r--   1 root supergroup   15395800 2026-11-17 11:32 /retail/bronze/data/date_dim/date_dim.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/household_demographics
+-rw-r--r--   1 root supergroup     155100 2026-11-17 11:32 /retail/bronze/data/household_demographics/household_demographics.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/income_band
+-rw-r--r--   1 root supergroup        327 2026-11-17 11:32 /retail/bronze/data/income_band/income_band.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/inventory
+-rw-r--r--   1 root supergroup  424943678 2026-11-17 11:32 /retail/bronze/data/inventory/inventory.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/item
+-rw-r--r--   1 root supergroup    6799286 2026-11-17 11:32 /retail/bronze/data/item/item.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/item_marketprices
+-rw-r--r--   1 root supergroup    4201170 2026-11-17 11:32 /retail/bronze/data/item_marketprices/item_marketprices.dat
+-rw-r--r--   1 root supergroup        273 2026-11-17 11:32 /retail/bronze/data/item_marketprices/item_marketprices_audit.csv
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/product_reviews
+-rw-r--r--   1 root supergroup   56355389 2026-11-17 11:32 /retail/bronze/data/product_reviews/product_reviews.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/promotion
+-rw-r--r--   1 root supergroup      46396 2026-11-17 11:32 /retail/bronze/data/promotion/promotion.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/reason
+-rw-r--r--   1 root supergroup       3105 2026-11-17 11:32 /retail/bronze/data/reason/reason.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/ship_mode
+-rw-r--r--   1 root supergroup       1220 2026-11-17 11:32 /retail/bronze/data/ship_mode/ship_mode.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/store
+-rw-r--r--   1 root supergroup       3386 2026-11-17 11:32 /retail/bronze/data/store/store.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/store_returns
+-rw-r--r--   1 root supergroup    4337400 2026-11-17 11:32 /retail/bronze/data/store_returns/store_returns.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/store_sales
+-rw-r--r--   1 root supergroup   92764700 2026-11-17 11:32 /retail/bronze/data/store_sales/store_sales.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/time_dim
+-rw-r--r--   1 root supergroup    5107780 2026-11-17 11:32 /retail/bronze/data/time_dim/time_dim.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/warehouse
+-rw-r--r--   1 root supergroup        584 2026-11-17 11:32 /retail/bronze/data/warehouse/warehouse.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/web_clickstreams
+-rw-r--r--   1 root supergroup  178722140 2026-11-17 11:32 /retail/bronze/data/web_clickstreams/web_clickstreams.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/web_page
+-rw-r--r--   1 root supergroup       8040 2026-11-17 11:32 /retail/bronze/data/web_page/web_page.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/web_returns
+-rw-r--r--   1 root supergroup    5383513 2026-11-17 11:32 /retail/bronze/data/web_returns/web_returns.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/web_sales
+-rw-r--r--   1 root supergroup  133790574 2026-11-17 11:32 /retail/bronze/data/web_sales/web_sales.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data/web_site
+-rw-r--r--   1 root supergroup       8838 2026-11-17 11:32 /retail/bronze/data/web_site/web_site.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh/customer
+-rw-r--r--   1 root supergroup     134360 2026-11-17 11:32 /retail/bronze/data_refresh/customer/customer.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh/customer_address
+-rw-r--r--   1 root supergroup      54587 2026-11-17 11:32 /retail/bronze/data_refresh/customer_address/customer_address.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh/inventory
+-rw-r--r--   1 root supergroup    4292915 2026-11-17 11:32 /retail/bronze/data_refresh/inventory/inventory.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh/item
+-rw-r--r--   1 root supergroup      69173 2026-11-17 11:32 /retail/bronze/data_refresh/item/item.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh/item_marketprices
+-rw-r--r--   1 root supergroup      42547 2026-11-17 11:32 /retail/bronze/data_refresh/item_marketprices/item_marketprices.dat
+-rw-r--r--   1 root supergroup     151009 2026-11-17 11:32 /retail/bronze/data_refresh/item_marketprices/item_marketprices_audit.csv
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh/product_reviews
+-rw-r--r--   1 root supergroup     573685 2026-11-17 11:32 /retail/bronze/data_refresh/product_reviews/product_reviews.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh/store_returns
+-rw-r--r--   1 root supergroup      48825 2026-11-17 11:32 /retail/bronze/data_refresh/store_returns/store_returns.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh/store_sales
+-rw-r--r--   1 root supergroup     922171 2026-11-17 11:32 /retail/bronze/data_refresh/store_sales/store_sales.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh/web_clickstreams
+-rw-r--r--   1 root supergroup    1821864 2026-11-17 11:32 /retail/bronze/data_refresh/web_clickstreams/web_clickstreams.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh/web_returns
+-rw-r--r--   1 root supergroup      55952 2026-11-17 11:32 /retail/bronze/data_refresh/web_returns/web_returns.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:32 /retail/bronze/data_refresh/web_sales
+-rw-r--r--   1 root supergroup    1378425 2026-11-17 11:32 /retail/bronze/data_refresh/web_sales/web_sales.dat
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:30 /retail/gold
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:30 /retail/metadata
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:30 /retail/quarantine
+drwxr-xr-x   - root supergroup          0 2026-11-17 11:30 /retail/silver
+
+===== 6. VOLUMES RETAIL =====
+986.1 M  986.1 M  /retail/bronze
+0        0        /retail/gold
+0        0        /retail/metadata
+0        0        /retail/quarantine
+0        0        /retail/silver
+          42           37         1034003831 /retail
+
+===== 7. DESTINATION NIFI =====
+Found 1 items
+-rw-r--r--   1 lepaleonthologue supergroup     88.5 M 2026-11-17 13:55 /retail-lake/raw/nifi/store_sales.dat
+88.5 M  88.5 M  /retail-lake/raw/nifi/store_sales.dat
+
+===== 8. INTEGRITE DU FICHIER NIFI =====
+--- Empreinte SHA256 locale ---
+7e0a7f16b47483741754bb641c92601dd7384dacc8331d0bcfb8abac82ed3d2e  ingestion/nifi/input/store_sales.dat
+--- Empreinte SHA256 du fichier HDFS ---
+7e0a7f16b47483741754bb641c92601dd7384dacc8331d0bcfb8abac82ed3d2e  -
+
+===== 9. NIFI =====
+
+JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
+NIFI_HOME=/Users/lepaleonthologue/Applications/nifi-2.12.0
+
+2026-11-17 15:20:19,299 INFO [main] org.apache.nifi.bootstrap.Command Application Process [22295] Command Status [SUCCESS] HTTP 200
+2026-11-17 15:20:19,299 INFO [main] org.apache.nifi.bootstrap.Command Status: UP
+
+
+--- VERSION / DOSSIER NIFI ---
+drwxrwxr-x  21 lepaleonthologue  staff  672 17 nov.  14:03 /Users/lepaleonthologue/Applications/nifi-2.12.0
+
+===== 10. FICHIERS LOCAUX NIFI =====
+-rw-r--r--@ 1 lepaleonthologue  staff    88M 17 nov.  14:07 ingestion/nifi/input/store_sales.dat
+-rw-r--r--  1 lepaleonthologue  staff   136B 17 nov.  14:12 ingestion/nifi/conf/hdfs-site.xml
+-rw-r--r--  1 lepaleonthologue  staff   254B 17 nov.  14:12 ingestion/nifi/conf/core-site.xml
+
+===== FIN DU RAPPORT =====

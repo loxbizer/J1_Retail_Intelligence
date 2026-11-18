@@ -3,3 +3,37 @@
 .LSOverride
 *.tmp
 *.swp
+
+# Environnements locaux
+.wrangler/
+.DS_Store
+
+# Logs et fichiers temporaires
+logs/*
+*.log
+*.tmp
+*.swp
+
+# Données et volumes générés
+data/
+data_refresh/
+**/node_modules/
+**/.venv/
+**/__pycache__/
+
+# Environnements locaux
+.wrangler/
+.DS_Store
+
+# Logs et fichiers temporaires
+logs/*
+*.log
+*.tmp
+*.swp
+
+# Données et volumes générés
+data/
+data_refresh/
+**/node_modules/
+**/.venv/
+**/__pycache__/

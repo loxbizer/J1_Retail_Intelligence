@@ -1,0 +1,53 @@
+services:
+  namenode:
+    image: ghcr.io/apache/hadoop:3.4.3
+    user: "0:0"
+    container_name: retail-namenode
+    hostname: namenode
+    command: ["hdfs", "namenode"]
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+    environment:
+      ENSURE_NAMENODE_DIR: /tmp/hadoop-root/dfs/name/nn
+      CORE-SITE.XML_fs.defaultFS: hdfs://namenode:9000
+      HDFS-SITE.XML_dfs.replication: "1"
+      HDFS-SITE.XML_dfs.namenode.name.dir: file:///tmp/hadoop-root/dfs/name/nn
+      HDFS-SITE.XML_dfs.namenode.rpc-bind-host: 0.0.0.0
+      HDFS-SITE.XML_dfs.namenode.http-bind-host: 0.0.0.0
+    volumes:
+      - namenode_data:/tmp/hadoop-root/dfs/name
+    networks:
+      - retail-hadoop
+
+  datanode:
+    image: ghcr.io/apache/hadoop:3.4.3
+    user: "0:0"
+    container_name: retail-datanode
+    hostname: datanode
+    command: ["hdfs", "datanode"]
+    depends_on:
+      - namenode
+    ports:
+      - "9864:9864"
+      - "9866:9866"
+    environment:
+      CORE-SITE.XML_fs.defaultFS: hdfs://namenode:9000
+      HDFS-SITE.XML_dfs.replication: "1"
+      HDFS-SITE.XML_dfs.datanode.data.dir: file:///var/lib/hadoop/data
+      HDFS-SITE.XML_dfs.datanode.address: 0.0.0.0:9866
+      HDFS-SITE.XML_dfs.datanode.hostname: ${HDFS_DATANODE_HOST:-localhost}
+      HDFS-SITE.XML_dfs.datanode.http.address: 0.0.0.0:9864
+      HDFS-SITE.XML_dfs.datanode.ipc.address: 0.0.0.0:9867
+    volumes:
+      - datanode_data:/var/lib/hadoop/data
+    networks:
+      - retail-hadoop
+
+volumes:
+  namenode_data:
+  datanode_data:
+
+networks:
+  retail-hadoop:
+    driver: bridge
