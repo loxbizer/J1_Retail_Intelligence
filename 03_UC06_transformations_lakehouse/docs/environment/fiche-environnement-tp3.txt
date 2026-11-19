@@ -1,0 +1,114 @@
+==================================================
+FICHE ENVIRONNEMENT - TP JOUR 3 (UC-06)
+Retail Intelligence Platform
+Releve du 18/11/2026 a 12:40
+==================================================
+
+Les versions ci-dessous sont celles reellement observees sur la
+machine de travail, relevees automatiquement avant le debut des
+traitements.
+
+===== 1. MACHINE ET SYSTEME =====
+ProductName:		macOS
+ProductVersion:		27.0
+BuildVersion:		26A8425
+
+===== 2. VERSION PYTHON =====
+Python 3.15.2
+Interpreteur : /Users/lepaleonthologue/retail-intelligence/tp3/.venv/bin/python
+pip 26.3 from /Users/lepaleonthologue/retail-intelligence/tp3/.venv/lib/python3.15/site-packages/pip (python 3.15)
+
+===== 3. VERSION JAVA =====
+openjdk version "25.0.5" 2026-10-20 LTS
+OpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)
+
+===== 4. VERSION PYSPARK =====
+PySpark 4.3.0
+py4j 0.10.9.9
+Installation par pip dans l'environnement virtuel du TP.
+
+===== 5. COMPATIBILITE DES VERSIONS =====
+Matrice annoncee par Spark 4.3 : Java 17, 21 ou 25, Python 3.11 et
+superieur. Les versions de Java 25 anterieures a la 25.0.3 sont
+depreciees.
+Versions installees ici : voir sections 2 a 4.
+Conclusion : combinaison conforme a la matrice annoncee, aucune
+reinstallation necessaire.
+
+Point de vigilance : a partir de Spark 4, une conversion de type ou
+une division qui echoue leve une exception au lieu de renvoyer une
+valeur nulle. Les traitements utilisent donc try_cast et try_divide,
+ce qui permet en plus de compter les conversions echouees.
+
+===== 6. ENVIRONNEMENT VIRTUEL =====
+Emplacement : /Users/lepaleonthologue/retail-intelligence/tp3/.venv
+Activation : source .venv/bin/activate
+A reactiver a chaque ouverture de terminal.
+Bibliotheques : pyspark, jupyterlab, ipykernel.
+
+===== 7. MODE D'EXECUTION =====
+Spark en mode local, master = local[*].
+Processeurs disponibles : 12
+Aucun cluster Spark n'est utilise. Ce mode ne reproduit pas les
+conditions d'un environnement distribue de production.
+Stockage HDFS fourni par Hadoop dans Docker (mis en place au Jour 2).
+Hadoop 3.4.3
+Conteneurs : retail-datanode : Up 20 hours
+retail-namenode : Up 20 hours
+
+===== 8. CHEMINS D'ACCES AUX DONNEES =====
+Source principale (zone Bronze du Jour 2) :
+  hdfs://localhost:9000/retail/bronze/data/<table>/<table>.dat
+Rafraichissement :
+  hdfs://localhost:9000/retail/bronze/data_refresh/
+Seconde arborescence de depot :
+  hdfs://localhost:9000/retail-lake/raw/tpcxbb/initial/
+Fichiers d'origine conserves sur la machine :
+  /Users/lepaleonthologue/Downloads/retail_project/data  (present : oui)
+
+Sources retenues pour le Jour 3 :
+  store_sales.dat      88.5 Mo   table de faits
+  date_dim.dat         14.7 Mo   dimension temps
+  store.dat             3.3 Ko   dimension magasin
+  item.dat              6.5 Mo   dimension produit
+
+Les fichiers sources ne sont pas modifies et aucune ecriture n'est
+effectuee dans les zones Bronze.
+
+===== 9. REPERTOIRES DE SORTIE =====
+Zone Silver      : hdfs://localhost:9000/retail/silver
+Zone Gold        : hdfs://localhost:9000/retail/gold
+Zone quarantaine : hdfs://localhost:9000/retail/quarantine
+Metadonnees      : hdfs://localhost:9000/retail/metadata
+Ces zones ont ete creees au Jour 2 et laissees vides.
+Rapports, journaux et preuves : repertoires docs/ et outputs/.
+
+===== 10. RESSOURCES DISPONIBLES =====
+Processeurs : 12
+Memoire physique : 16 Go (17179869184 octets)
+Memoire du driver : valeur par defaut, non modifiee.
+
+===== 11. TEST DE VALIDATION DE L'ENVIRONNEMENT =====
+Resultat : OK
+Session local[*] creee, Spark 4.3.0, jeu de test a 3 lignes.
+
+===== 12. LECTURE HDFS DEPUIS LA MACHINE LOCALE =====
+Reglage applique cote client :
+  spark.hadoop.dfs.client.use.datanode.hostname = true
+Ce reglage est necessaire parce que le NameNode communique au client
+l'adresse interne du DataNode dans le reseau Docker.
+Resultat : OK
+Lecture de hdfs://localhost:9000/retail/bronze/data/store/store.dat : 12 lignes lues depuis HDFS.
+Les traitements du TP sont donc executes sur les donnees HDFS.
+
+===== 13. SOLUTION DE REPLI =====
+Si la lecture HDFS n'aboutit pas, les traitements sont realises sur
+les fichiers de /Users/lepaleonthologue/Downloads/retail_project/data et les zones Silver et Gold sont
+ecrites sous ~/retail-intelligence/tp3/data.
+Cette solution est prevue par le TP a condition d'etre documentee.
+Dans ce cas le traitement reste local et n'est pas presente comme un
+traitement distribue sur cluster.
+Repli utilise : non
+
+===== FIN DE FICHE =====

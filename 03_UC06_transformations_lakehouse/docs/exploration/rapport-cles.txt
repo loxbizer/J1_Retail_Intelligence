@@ -1,0 +1,125 @@
+============================================================
+CLES ET PERIMETRE - store_sales
+18/11/2026 13:22
+============================================================
+
+Lignes : 667579
+
+============================================================
+1. CLES CANDIDATES TESTEES
+============================================================
+ss_ticket_number                                                89100  ecart 578479
+ss_ticket_number + ss_item_sk                                  663443  ecart 4136
+ss_sold_date_sk + ss_ticket_number + ss_item_sk                663443  ecart 4136
+ss_store_sk + ss_ticket_number + ss_item_sk                    663443  ecart 4136
+ss_sold_date_sk + ss_store_sk + ss_ticket_number + ss_item_sk   663443  ecart 4136
+
+Lecture : la premiere cle UNIQUE est la cle reelle de la table.
+Si aucune ne l'est, il reste de vraies lignes repetees.
+
+============================================================
+2. LIGNES STRICTEMENT IDENTIQUES (23 colonnes)
+============================================================
+Lignes distinctes : 667579
+Lignes repetees a l'identique : 0
+-> aucune ligne n'est repetee a l'identique
+
+============================================================
+3. DEUX GROUPES EN DOUBLE, EN ENTIER
+============================================================
+Groupes (ticket, item) a plus d'une ligne : 4038
+
+--- ticket 2378, article 10003 : 4 lignes ---
+  ss_sold_date_sk       36938 | 36938 | 36938 | 36938
+  ss_sold_time_sk       29366 | 29366 | 29366 | 29366
+  ss_item_sk            10003 | 10003 | 10003 | 10003
+  ss_customer_sk        53484 | 53484 | 53484 | 53484
+  ss_cdemo_sk           1762419 | 1762419 | 1762419 | 1762419
+  ss_hdemo_sk           7076 | 7076 | 7076 | 7076
+  ss_addr_sk            21298 | 21298 | 21298 | 21298
+  ss_store_sk           6 | 6 | 6 | 6
+  ss_promo_sk           169 | 254 | 231 | 296   <== DIFFERENT
+  ss_ticket_number      2378 | 2378 | 2378 | 2378
+  ss_quantity           9 | 64 | 63 | 61   <== DIFFERENT
+  ss_wholesale_cost     77.97 | 3.61 | 30.41 | 36.82   <== DIFFERENT
+  ss_list_price         99.8 | 6.32 | 31.63 | 60.38   <== DIFFERENT
+  ss_sales_price        89.82 | 2.02 | 27.2 | 35.02   <== DIFFERENT
+  ss_ext_discount_amt   89.82 | 275.2 | 279.09 | 1546.96   <== DIFFERENT
+  ss_ext_sales_price    808.38 | 129.28 | 1713.6 | 2136.22   <== DIFFERENT
+  ss_ext_wholesale_cost 701.73 | 231.04 | 1915.83 | 2246.02   <== DIFFERENT
+  ss_ext_list_price     898.2 | 404.48 | 1992.69 | 3683.18   <== DIFFERENT
+  ss_ext_tax            24.25 | 2.59 | 40.27 | 65.15   <== DIFFERENT
+  ss_coupon_amt         0.0 | 0.0 | 908.21 | 833.13   <== DIFFERENT
+  ss_net_paid           808.38 | 129.28 | 805.39 | 1303.09   <== DIFFERENT
+  ss_net_paid_inc_tax   832.63 | 131.87 | 845.66 | 1368.24   <== DIFFERENT
+  ss_net_profit         106.65 | -101.76 | -1110.44 | -942.93   <== DIFFERENT
+
+--- ticket 37842, article 10000 : 4 lignes ---
+  ss_sold_date_sk       37657 | 37657 | 37657 | 37657
+  ss_sold_time_sk       82721 | 82721 | 82721 | 82721
+  ss_item_sk            10000 | 10000 | 10000 | 10000
+  ss_customer_sk        91305 | 91305 | 91305 | 91305
+  ss_cdemo_sk           664476 | 664476 | 664476 | 664476
+  ss_hdemo_sk           6899 | 6899 | 6899 | 6899
+  ss_addr_sk            3852 | 3852 | 3852 | 3852
+  ss_store_sk           5 | 5 | 5 | 5
+  ss_promo_sk           134 | 141 | 85 | 185   <== DIFFERENT
+  ss_ticket_number      37842 | 37842 | 37842 | 37842
+  ss_quantity           56 | 21 | 17 | 78   <== DIFFERENT
+  ss_wholesale_cost     27.55 | 19.85 | 99.36 | 40.92   <== DIFFERENT
+  ss_list_price         41.88 | 33.94 | 168.91 | 43.38   <== DIFFERENT
+  ss_sales_price        13.82 | 24.78 | 67.56 | 15.18   <== DIFFERENT
+  ss_ext_discount_amt   1571.36 | 192.36 | 1722.95 | 2199.6   <== DIFFERENT
+  ss_ext_sales_price    773.92 | 520.38 | 1148.52 | 1184.04   <== DIFFERENT
+  ss_ext_wholesale_cost 1542.8 | 416.85 | 1689.12 | 3191.76   <== DIFFERENT
+  ss_ext_list_price     2345.28 | 712.74 | 2871.47 | 3383.64   <== DIFFERENT
+  ss_ext_tax            0.0 | 6.04 | 49.62 | 47.36   <== DIFFERENT
+  ss_coupon_amt         0.0 | 369.47 | 321.59 | 0.0   <== DIFFERENT
+  ss_net_paid           773.92 | 150.91 | 826.93 | 1184.04   <== DIFFERENT
+  ss_net_paid_inc_tax   773.92 | 156.95 | 876.55 | 1231.4   <== DIFFERENT
+  ss_net_profit         -768.88 | -265.94 | -862.19 | -2007.72   <== DIFFERENT
+
+Lecture : les colonnes DIFFERENT expliquent le doublon. Si la
+date ou le magasin differe, ce sont deux ventes distinctes et
+la cle etait incomplete, pas violee.
+
+============================================================
+4. DIMENSION item : historisation
+============================================================
+Lignes                 : 17820
+i_item_sk distincts    : 17820
+i_item_id distincts    : 17820
+i_rec_end_date non nul : 0
+
+Lecture : autant de i_item_id que de lignes et i_rec_end_date
+vide => une seule version par article, donc aucune jointure ne
+peut multiplier les lignes.
+
+============================================================
+5. PERIMETRE REEL DES VENTES
+============================================================
+Lignes apres jointure date : 667579  (avant : 667579)
+Premiere vente : 2001-01-01
+Derniere vente : 2005-12-13
+Annees couvertes : 5
+
+Repartition par annee :
+  annee       lignes   tickets          ca_net
+  2001        134873     17991    232498659.83
+  2002        135084     17990    230947265.82
+  2003        134773     17990    233575185.63
+  2004        136014     18039    234344934.29
+  2005        126835     17090     219163540.8
+
+Tickets distincts : 89100
+Magasins presents : 12 sur 12
+
+Bornes des mesures :
+  ss_quantity       min            1  max          100  negatifs        0
+  ss_net_paid       min          0.0  max      18745.0  negatifs        0
+  ss_net_profit     min      -9866.6  max       9134.0  negatifs   495971
+
+Lecture : un montant negatif n'est pas une erreur. Un profit net
+negatif est une vente a perte, cas metier reel.
+
+FIN DU RAPPORT

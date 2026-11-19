@@ -1,0 +1,223 @@
+============================================================
+RAPPORT D'EXPLORATION - TP JOUR 3 (etapes 2 et 3)
+18/11/2026 12:40
+============================================================
+
+============================================================
+SOURCE : store_sales
+============================================================
+Origine      : HDFS
+Chemin       : hdfs://localhost:9000/retail/bronze/data/store_sales/store_sales.dat
+Colonnes lues: 23  (schema attendu : 23)
+Noms de colonnes : APPLIQUES (compte conforme au schema)
+Lignes       : 667579
+
+Schema :
+  ss_sold_date_sk        int
+  ss_sold_time_sk        int
+  ss_item_sk             int
+  ss_customer_sk         int
+  ss_cdemo_sk            int
+  ss_hdemo_sk            int
+  ss_addr_sk             int
+  ss_store_sk            int
+  ss_promo_sk            int
+  ss_ticket_number       int
+  ss_quantity            int
+  ss_wholesale_cost      double
+  ss_list_price          double
+  ss_sales_price         double
+  ss_ext_discount_amt    double
+  ss_ext_sales_price     double
+  ss_ext_wholesale_cost  double
+  ss_ext_list_price      double
+  ss_ext_tax             double
+  ss_coupon_amt          double
+  ss_net_paid            double
+  ss_net_paid_inc_tax    double
+  ss_net_profit          double
+
+Valeurs nulles par colonne (seules les colonnes concernees) :
+  ss_cdemo_sk                   238  (0.04 %)
+  ss_hdemo_sk                   295  (0.04 %)
+  ss_addr_sk                    448  (0.07 %)
+  ss_promo_sk                   158  (0.02 %)
+
+Cle candidate : ss_ticket_number + ss_item_sk
+  lignes 667579 / cles distinctes 663443 / ecart 4136
+  -> cle NON unique, a examiner
+
+Apercu :
+  ss_sold_date_sk=36890 | ss_sold_time_sk=71480 | ss_item_sk=10001 | ss_customer_sk=44404 | ss_cdemo_sk=493944 | ss_hdemo_sk=2898 | ...
+  ss_sold_date_sk=36890 | ss_sold_time_sk=71480 | ss_item_sk=10000 | ss_customer_sk=44404 | ss_cdemo_sk=493944 | ss_hdemo_sk=2898 | ...
+  ss_sold_date_sk=36890 | ss_sold_time_sk=71480 | ss_item_sk=15556 | ss_customer_sk=44404 | ss_cdemo_sk=493944 | ss_hdemo_sk=2898 | ...
+
+============================================================
+SOURCE : item
+============================================================
+Origine      : HDFS
+Chemin       : hdfs://localhost:9000/retail/bronze/data/item/item.dat
+Colonnes lues: 22  (schema attendu : 22)
+Noms de colonnes : APPLIQUES (compte conforme au schema)
+Lignes       : 17820
+
+Schema :
+  i_item_sk              int
+  i_item_id              string
+  i_rec_start_date       date
+  i_rec_end_date         string
+  i_item_desc            string
+  i_current_price        double
+  i_wholesale_cost       double
+  i_brand_id             int
+  i_brand                string
+  i_class_id             int
+  i_class                string
+  i_category_id          int
+  i_category             string
+  i_manufact_id          int
+  i_manufact             string
+  i_size                 string
+  i_formulation          string
+  i_color                string
+  i_units                string
+  i_container            string
+  i_manager_id           int
+  i_product_name         string
+
+Valeurs nulles par colonne (seules les colonnes concernees) :
+  i_rec_end_date              17820  (100.00 %)
+  i_item_desc                     4  (0.02 %)
+  i_brand_id                      8  (0.04 %)
+  i_brand                         6  (0.03 %)
+
+Cle candidate : i_item_sk
+  lignes 17820 / cles distinctes 17820 / ecart 0
+  -> cle unique
+
+Apercu :
+  i_item_sk=0 | i_item_id=AAAAAAAAAAAAAAAA | i_rec_start_date=2000-01-14 | i_rec_end_date=None | i_item_desc=quickly even dinos beneath the frays must have to boost boldly careful bold escapades: stealthily even forges over the dependencies integrate always past the quiet sly decoys-- notornis sol | i_current_price=72.29 | ...
+  i_item_sk=1 | i_item_id=AAAAAAAAAAAAAAAB | i_rec_start_date=2000-09-23 | i_rec_end_date=None | i_item_desc=quietly quiet hockey players outside the furiously fluffy sauternes impress daringly silently quiet gifts? bold ruthless escapades run slyly epitaphs! warhorses of the carefull | i_current_price=95.67 | ...
+  i_item_sk=2 | i_item_id=AAAAAAAAAAAAAAAC | i_rec_start_date=2000-09-01 | i_rec_end_date=None | i_item_desc=dogged dugouts need to maintain regularly in place of the furiously brave dinos! dugouts poach stealthily final escapades? sauternes will have to wake! tithes can use slowly until the frets. stea | i_current_price=62.74 | ...
+
+============================================================
+SOURCE : store
+============================================================
+Origine      : HDFS
+Chemin       : hdfs://localhost:9000/retail/bronze/data/store/store.dat
+Colonnes lues: 29  (schema attendu : 29)
+Noms de colonnes : APPLIQUES (compte conforme au schema)
+Lignes       : 12
+
+Schema :
+  s_store_sk             int
+  s_store_id             string
+  s_rec_start_date       date
+  s_rec_end_date         string
+  s_closed_date_sk       int
+  s_store_name           string
+  s_number_employees     int
+  s_floor_space          int
+  s_hours                string
+  s_manager              string
+  s_market_id            int
+  s_geography_class      string
+  s_market_desc          string
+  s_market_manager       string
+  s_division_id          int
+  s_division_name        string
+  s_company_id           int
+  s_company_name         string
+  s_street_number        int
+  s_street_name          string
+  s_street_type          string
+  s_suite_number         string
+  s_city                 string
+  s_county               string
+  s_state                string
+  s_zip                  int
+  s_country              string
+  s_gmt_offset           int
+  s_tax_precentage       double
+
+Valeurs nulles par colonne (seules les colonnes concernees) :
+  s_rec_end_date                 12  (100.00 %)
+
+Cle candidate : s_store_sk
+  lignes 12 / cles distinctes 12 / ecart 0
+  -> cle unique
+
+Apercu :
+  s_store_sk=0 | s_store_id=AAAAAAAAAAAAAAAA | s_rec_start_date=2000-08-02 | s_rec_end_date=None | s_closed_date_sk=71238 | s_store_name=Forest | ...
+  s_store_sk=1 | s_store_id=AAAAAAAAAAAAAAAB | s_rec_start_date=2000-07-03 | s_rec_end_date=None | s_closed_date_sk=18994 | s_store_name=Hillside | ...
+  s_store_sk=2 | s_store_id=AAAAAAAAAAAAAAAC | s_rec_start_date=2000-09-01 | s_rec_end_date=None | s_closed_date_sk=8900 | s_store_name=Sherwood | ...
+
+============================================================
+SOURCE : date_dim
+============================================================
+Origine      : HDFS
+Chemin       : hdfs://localhost:9000/retail/bronze/data/date_dim/date_dim.dat
+Colonnes lues: 28  (schema attendu : 28)
+Noms de colonnes : APPLIQUES (compte conforme au schema)
+Lignes       : 109573
+
+Schema :
+  d_date_sk              int
+  d_date_id              string
+  d_date                 date
+  d_month_seq            int
+  d_week_seq             int
+  d_quarter_seq          int
+  d_year                 int
+  d_dow                  int
+  d_moy                  int
+  d_dom                  int
+  d_qoy                  int
+  d_fy_year              int
+  d_fy_quarter_seq       int
+  d_fy_week_seq          int
+  d_day_name             string
+  d_quarter_name         string
+  d_holiday              string
+  d_weekend              string
+  d_following_holiday    string
+  d_first_dom            int
+  d_last_dom             int
+  d_same_day_ly          int
+  d_same_day_lq          int
+  d_current_day          string
+  d_current_week         string
+  d_current_month        string
+  d_current_quarter      string
+  d_current_year         string
+
+Valeurs nulles par colonne (seules les colonnes concernees) :
+  aucune
+
+Cle candidate : d_date_sk
+  lignes 109573 / cles distinctes 109573 / ecart 0
+  -> cle unique
+
+Apercu :
+  d_date_sk=0 | d_date_id=AAAAAAAAAAAAAAAA | d_date=1900-01-01 | d_month_seq=0 | d_week_seq=0 | d_quarter_seq=0 | ...
+  d_date_sk=1 | d_date_id=AAAAAAAAAAAAAAAB | d_date=1900-01-02 | d_month_seq=0 | d_week_seq=0 | d_quarter_seq=0 | ...
+  d_date_sk=2 | d_date_id=AAAAAAAAAAAAAAAC | d_date=1900-01-03 | d_month_seq=0 | d_week_seq=0 | d_quarter_seq=0 | ...
+
+============================================================
+PREUVE ARITHMETIQUE SUR store_sales
+============================================================
+ss_ext_sales_price = ss_quantity x ss_sales_price
+  verifie sur 1000 / 1000 lignes testees
+  -> affectation des noms DEMONTREE
+
+============================================================
+INTEGRITE REFERENTIELLE (ventes vers dimensions)
+============================================================
+ss_item_sk -> item.i_item_sk
+  lignes sans correspondance : 0  (dont cle nulle : 0)
+ss_store_sk -> store.s_store_sk
+  lignes sans correspondance : 0  (dont cle nulle : 0)
+ss_sold_date_sk -> date_dim.d_date_sk
+  lignes sans correspondance : 0  (dont cle nulle : 0)
+
+FIN DU RAPPORT

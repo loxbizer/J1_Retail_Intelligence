@@ -1,0 +1,71 @@
+============================================================
+GOLD - TP JOUR 3 (etape 7)
+18/11/2026 13:22
+============================================================
+
+Lignes Silver (ventes) : 667579
+
+============================================================
+VERIFICATION DES JOINTURES AVANT USAGE
+============================================================
+ss_sold_date_sk -> date_dim.d_date_sk   (cardinalite attendue n:1)
+      referentiel : 109573 lignes / 109573 cles distinctes -> cle unique
+      ventes sans correspondance : 0
+ss_store_sk -> store.s_store_sk   (cardinalite attendue n:1)
+      referentiel : 12 lignes / 12 cles distinctes -> cle unique
+      ventes sans correspondance : 0
+ss_item_sk -> item.i_item_sk   (cardinalite attendue n:1)
+      referentiel : 17820 lignes / 17820 cles distinctes -> cle unique
+      ventes sans correspondance : 0
+
+============================================================
+GOLD 1 : ca_mensuel_magasin
+============================================================
+Lignes avant jointures : 667579
+Lignes apres jointures : 667579
+      -> ni multiplication ni perte
+Ecrit : hdfs://localhost:9000/retail/gold/ca_mensuel_magasin
+Lignes Gold : 720  (grain : un mois x un magasin)
+
+Bouclage des montants :
+      somme Silver (detail) : 1150529586.37
+      somme Gold (agrege)   : 1150529586.37
+      ecart                 : 0.0  -> OK, ni perte ni duplication
+
+Apercu :
+      2001-01  Germantown   ca   1792112.77  tickets    142  panier 12620.51
+      2001-01  Williamstown ca    1733989.6  tickets    142  panier 12211.19
+      2001-01  Bedford      ca   1696543.33  tickets    129  panier 13151.5
+      2001-01  Egypt        ca   1671777.21  tickets    134  panier 12475.95
+      2001-01  Pioneer      ca   1657308.51  tickets    133  panier 12460.97
+      2001-01  Elmwood      ca   1640426.13  tickets    133  panier 12334.03
+      2001-01  Bloomfield   ca   1636695.34  tickets    122  panier 13415.54
+      2001-01  Hillside     ca   1564162.75  tickets    129  panier 12125.29
+      2001-01  Buffalo      ca   1535619.89  tickets    117  panier 13124.96
+      2001-01  Avalon       ca   1493402.84  tickets    123  panier 12141.49
+
+============================================================
+GOLD 2 : top_produits_quantite
+============================================================
+Lignes avant jointure item : 667579
+Lignes apres jointure item : 667579
+      -> jointure sans multiplication
+Lignes a categorie nulle : 0
+      (jointure left : une vente sans produit au referentiel est
+       conservee, categorie nulle, et c'est documente)
+Ecrit : hdfs://localhost:9000/retail/gold/top_produits_quantite
+Lignes Gold : 17820  (grain : un produit)
+
+Apercu (10 produits les plus vendus) :
+      vwPR6l3UPyCIv5bljZbIG9k9YHLa   qte   454954  ca  15408393.55
+      Z2kc                           qte   439086  ca   14933870.1
+      6VxbaI6thqY49zO                qte   420138  ca  14572124.66
+      bwTLbeGP8aT6bW7YjgxmDJuCUTlw   qte   377027  ca  12817437.86
+      c4v1x8aCv1KWxIhOcPY3LimEiLB    qte    95677  ca   3212955.42
+      HUpD                           qte    94625  ca   3336529.83
+      ChBxiPibZQaJ57OpSZlX8c3bVpcY   qte    92967  ca   3052923.56
+      IQXzegQYQmL44ns6l7yaL6QEkcZp   qte    92446  ca   3112394.82
+      I669eBdhzmKpf93OoII6M0kCNYEz   qte    91710  ca   3162636.37
+      IwXsJM7EZhuHzeS                qte    91464  ca   3110870.91
+
+FIN DU RAPPORT

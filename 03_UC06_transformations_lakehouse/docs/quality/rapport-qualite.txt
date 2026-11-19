@@ -1,0 +1,72 @@
+============================================================
+RAPPORT QUALITE - TP JOUR 3 (etape 9)
+18/11/2026 13:22
+============================================================
+
+Controles executes : 20
+Conformes          : 19
+Anomalies          : 1
+
+statut    dimension       controle                              mesure     attendu
+OK        Completude      completude_ss_item_sk                      0           0
+OK        Completude      completude_ss_ticket_number                0           0
+OK        Completude      completude_ss_store_sk                     0           0
+OK        Completude      completude_ss_sold_date_sk                 0           0
+ANOMALIE  Unicite         unicite_cle_vente                       4136           0
+OK        Validite        validite_types                             0           0
+OK        Coherence       coherence_quantite                         0           0
+OK        Coherence       coherence_date                             0           0
+OK        Volume          volume_store_sales                    667579      667579
+OK        Volume          volume_item                            17820       17820
+OK        Volume          volume_store                              12          12
+OK        Volume          volume_date_dim                       109573      109573
+OK        Cle candidate   cle_item                                   0           0
+OK        Cle candidate   cle_store                                  0           0
+OK        Cle candidate   cle_date_dim                               0           0
+OK        Integrite       integrite_item                             0           0
+OK        Integrite       integrite_store                            0           0
+OK        Integrite       integrite_date_dim                         0           0
+OK        Coherence       bouclage_gold                     1150529586  1150529586
+OK        Validite        panier_moyen_calculable                    0           0
+
+============================================================
+BILAN
+============================================================
+1. REGLES RESPECTEES
+   completude_ss_item_sk : ss_item_sk non nul -> mesure 0
+   completude_ss_ticket_number : ss_ticket_number non nul -> mesure 0
+   completude_ss_store_sk : ss_store_sk non nul -> mesure 0
+   completude_ss_sold_date_sk : ss_sold_date_sk non nul -> mesure 0
+   validite_types : types conformes au schema declare -> mesure 0
+   coherence_quantite : ss_quantity strictement positif -> mesure 0
+   coherence_date : date de vente dans la plage du referentiel -> mesure 0
+   volume_store_sales : bronze = silver + quarantaine -> mesure 667579
+   volume_item : bronze = silver + quarantaine -> mesure 17820
+   volume_store : bronze = silver + quarantaine -> mesure 12
+   volume_date_dim : bronze = silver + quarantaine -> mesure 109573
+   cle_item : i_item_sk unique -> mesure 0
+   cle_store : s_store_sk unique -> mesure 0
+   cle_date_dim : d_date_sk unique -> mesure 0
+   integrite_item : ss_item_sk present dans item -> mesure 0
+   integrite_store : ss_store_sk present dans store -> mesure 0
+   integrite_date_dim : ss_sold_date_sk present dans date_dim -> mesure 0
+   bouclage_gold : somme Gold = somme Silver -> mesure 1150529586
+   panier_moyen_calculable : panier moyen renseigne partout -> mesure 0
+
+2. ANOMALIES RESTANTES
+   unicite_cle_vente : ss_sold_date_sk + ss_ticket_number + ss_item_sk
+      mesure 4136 au lieu de 0
+      decision : aucune suppression : ecart documente et explique
+
+3. DONNEES MISES A L'ECART
+   voir la zone de quarantaine et le rapport Silver
+
+4. LIMITES DES CONTROLES
+   - executes sur le jeu initial, pas sur le jeu de rafraichissement
+   - l'integrite n'est verifiable que la ou un referentiel existe
+   - la fraicheur n'est pas controlable : donnees synthetiques,
+     sans date de chargement reelle
+   - aucun controle ne valide la veracite metier des montants,
+     seulement leur plausibilite
+
+FIN DU RAPPORT

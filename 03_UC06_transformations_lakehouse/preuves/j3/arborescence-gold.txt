@@ -1,0 +1,10 @@
+drwxr-xr-x   - root supergroup          0 2026-11-18 12:22 /retail/gold/ca_mensuel_magasin
+-rw-r--r--   3 root supergroup          0 2026-11-18 12:22 /retail/gold/ca_mensuel_magasin/_SUCCESS
+-rw-r--r--   3 root supergroup      31225 2026-11-18 12:22 /retail/gold/ca_mensuel_magasin/part-00000-5cebaa24-c9ca-40d9-b660-c2dbf2f7481d-c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-18 13:41 /retail/gold/ca_mensuel_magasin_notebook
+-rw-r--r--   3 root supergroup          0 2026-11-18 13:41 /retail/gold/ca_mensuel_magasin_notebook/_SUCCESS
+-rw-r--r--   3 root supergroup      25220 2026-11-18 13:41 /retail/gold/ca_mensuel_magasin_notebook/part-00000-89817691-243d-455c-be45-6338da2ed0cc-c000.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-18 12:22 /retail/gold/top_produits_quantite
+-rw-r--r--   3 root supergroup          0 2026-11-18 12:22 /retail/gold/top_produits_quantite/_SUCCESS
+-rw-r--r--   3 root supergroup     637163 2026-11-18 12:22 /retail/gold/top_produits_quantite/part-00000-d8fd9219-ca5d-480e-9751-d32244377360-c000.snappy.parquet
+-rw-r--r--   3 root supergroup     650050 2026-11-18 12:22 /retail/gold/top_produits_quantite/part-00001-d8fd9219-ca5d-480e-9751-d32244377360-c000.snappy.parquet

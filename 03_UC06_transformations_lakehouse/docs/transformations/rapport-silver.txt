@@ -1,0 +1,108 @@
+============================================================
+SILVER - TP JOUR 3 (etapes 4, 5 et 6)
+18/11/2026 13:22
+============================================================
+
+============================================================
+TABLE : store_sales  ->  silver/sales/store_sales
+============================================================
+Lignes lues en Bronze : 667579
+Colonnes : 23 (schema declare, types imposes)
+R1 trim applique sur 0 colonne(s) texte
+R2 valeurs nulles apres typage :
+      ss_cdemo_sk                   238  (0.04 %)
+      ss_hdemo_sk                   295  (0.04 %)
+      ss_addr_sk                    448  (0.07 %)
+      ss_promo_sk                   158  (0.02 %)
+R3 cles obligatoires ['ss_item_sk', 'ss_ticket_number', 'ss_store_sk', 'ss_sold_date_sk']
+      lignes ecartees : 0
+R4 lignes a montant negatif : 495971 -> conservees et marquees
+Cle ss_sold_date_sk + ss_ticket_number + ss_item_sk
+      lignes 667579 / distinctes 663443 / ecart 4136
+      -> cle non unique : AUCUNE suppression, ecart documente
+Ecrit : hdfs://localhost:9000/retail/silver/sales/store_sales
+Controles apres ecriture :
+      relecture       : OK
+      lignes relues   : 667579
+      colonnes        : 27 (dont 3 de provenance)
+      types conserves : OK
+      bouclage        : 667579 = 667579 + 0 -> OK
+
+============================================================
+TABLE : item  ->  silver/products/item
+============================================================
+Lignes lues en Bronze : 17820
+Colonnes : 22 (schema declare, types imposes)
+R1 trim applique sur 12 colonne(s) texte
+R2 valeurs nulles apres typage :
+      i_rec_end_date              17820  (100.00 %)
+      i_item_desc                     4  (0.02 %)
+      i_brand_id                      8  (0.04 %)
+      i_brand                         6  (0.03 %)
+R3 cles obligatoires ['i_item_sk']
+      lignes ecartees : 0
+Cle i_item_sk
+      lignes 17820 / distinctes 17820 / ecart 0
+      -> cle unique, aucune deduplication necessaire
+Ecrit : hdfs://localhost:9000/retail/silver/products/item
+Controles apres ecriture :
+      relecture       : OK
+      lignes relues   : 17820
+      colonnes        : 25 (dont 3 de provenance)
+      types conserves : OK
+      bouclage        : 17820 = 17820 + 0 -> OK
+
+============================================================
+TABLE : store  ->  silver/stores/store
+============================================================
+Lignes lues en Bronze : 12
+Colonnes : 29 (schema declare, types imposes)
+R1 trim applique sur 16 colonne(s) texte
+R2 valeurs nulles apres typage :
+      s_rec_end_date                 12  (100.00 %)
+R3 cles obligatoires ['s_store_sk']
+      lignes ecartees : 0
+Cle s_store_sk
+      lignes 12 / distinctes 12 / ecart 0
+      -> cle unique, aucune deduplication necessaire
+Ecrit : hdfs://localhost:9000/retail/silver/stores/store
+Controles apres ecriture :
+      relecture       : OK
+      lignes relues   : 12
+      colonnes        : 32 (dont 3 de provenance)
+      types conserves : OK
+      bouclage        : 12 = 12 + 0 -> OK
+
+============================================================
+TABLE : date_dim  ->  silver/time/date_dim
+============================================================
+Lignes lues en Bronze : 109573
+Colonnes : 28 (schema declare, types imposes)
+R1 trim applique sur 11 colonne(s) texte
+R2 aucune valeur nulle apres typage
+R3 cles obligatoires ['d_date_sk']
+      lignes ecartees : 0
+Cle d_date_sk
+      lignes 109573 / distinctes 109573 / ecart 0
+      -> cle unique, aucune deduplication necessaire
+Ecrit : hdfs://localhost:9000/retail/silver/time/date_dim
+Controles apres ecriture :
+      relecture       : OK
+      lignes relues   : 109573
+      colonnes        : 31 (dont 3 de provenance)
+      types conserves : OK
+      bouclage        : 109573 = 109573 + 0 -> OK
+
+============================================================
+RECAPITULATIF
+============================================================
+table             bronze    silver  quarant.   cle unique
+store_sales       667579    667579         0        False
+item               17820     17820         0         True
+store                 12        12         0         True
+date_dim          109573    109573         0         True
+
+Equation de conservation : bronze = silver + quarantaine.
+Aucune ligne n'a disparu sans decision tracee.
+
+FIN DU RAPPORT

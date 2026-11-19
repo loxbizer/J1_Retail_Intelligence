@@ -1,0 +1,56 @@
+============================================================
+COMPARAISON DES FORMATS - TP JOUR 3 (etape 8)
+18/11/2026 13:22
+============================================================
+
+Jeu compare : gold/ca_mensuel_magasin (720 lignes, 13 colonnes)
+Memes donnees ecrites dans les trois formats.
+
+format          octets        Ko   x Parquet
+csv              58990      57.6        1.89
+json            189424     185.0        6.06
+parquet          31240      30.5        1.00
+
+Relecture du Parquet produit :
+   lignes relues : 720
+   colonnes      : 13
+   types conserves sans inference : OUI
+
+============================================================
+ANALYSE
+============================================================
+Organisation
+   CSV     : une ligne de texte par enregistrement
+   JSON    : un document par enregistrement, noms de champs repetes
+   Parquet : colonnaire, par blocs, avec statistiques par bloc
+
+Types
+   CSV     : aucun, tout est texte a interpreter
+   JSON    : types de base portes par la syntaxe
+   Parquet : schema type enregistre dans le fichier
+
+Lisibilite
+   CSV     : directe au cat
+   JSON    : lisible mais verbeuse
+   Parquet : binaire, illisible sans outil
+
+Lecture selective
+   CSV     : non, le fichier entier est lu
+   JSON    : depend de la structure
+   Parquet : oui, colonne par colonne
+
+Usage adapte
+   CSV     : echange, export, zone Bronze
+   JSON    : donnees semi-structurees, API
+   Parquet : analytique, zones Silver et Gold
+
+Limite essentielle de Parquet
+   Parquet decrit comment les donnees sont ecrites DANS UN
+   FICHIER, pas comment un ensemble de fichiers forme une
+   table. Ni commit atomique, ni isolation, ni versions, ni
+   time travel : ces garanties viennent d'un format de table
+   (Delta Lake, Iceberg, Hudi) pose au-dessus des memes
+   fichiers Parquet. Un repertoire Parquet n'est donc pas une
+   table transactionnelle ACID.
+
+FIN DU RAPPORT

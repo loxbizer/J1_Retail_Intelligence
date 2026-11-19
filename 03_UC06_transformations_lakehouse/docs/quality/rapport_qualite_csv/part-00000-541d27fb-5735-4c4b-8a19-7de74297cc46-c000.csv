@@ -1,0 +1,21 @@
+controle,dimension,regle,mesure,attendu,statut,decision
+completude_ss_item_sk,Completude,ss_item_sk non nul,0,0,OK,ligne ecartee en quarantaine
+completude_ss_ticket_number,Completude,ss_ticket_number non nul,0,0,OK,ligne ecartee en quarantaine
+completude_ss_store_sk,Completude,ss_store_sk non nul,0,0,OK,ligne ecartee en quarantaine
+completude_ss_sold_date_sk,Completude,ss_sold_date_sk non nul,0,0,OK,ligne ecartee en quarantaine
+unicite_cle_vente,Unicite,ss_sold_date_sk + ss_ticket_number + ss_item_sk,4136,0,ANOMALIE,aucune suppression : ecart documente et explique
+validite_types,Validite,types conformes au schema declare,0,0,OK,schema explicite impose a la lecture
+coherence_quantite,Coherence,ss_quantity strictement positif,0,0,OK,"quantite nulle ou negative = retour, a traiter a part"
+coherence_date,Coherence,date de vente dans la plage du referentiel,0,0,OK,hors plage -> quarantaine
+volume_store_sales,Volume,bronze = silver + quarantaine,667579,667579,OK,un ecart = une ligne perdue sans decision
+volume_item,Volume,bronze = silver + quarantaine,17820,17820,OK,un ecart = une ligne perdue sans decision
+volume_store,Volume,bronze = silver + quarantaine,12,12,OK,un ecart = une ligne perdue sans decision
+volume_date_dim,Volume,bronze = silver + quarantaine,109573,109573,OK,un ecart = une ligne perdue sans decision
+cle_item,Cle candidate,i_item_sk unique,0,0,OK,cle non unique = risque de multiplication en jointure
+cle_store,Cle candidate,s_store_sk unique,0,0,OK,cle non unique = risque de multiplication en jointure
+cle_date_dim,Cle candidate,d_date_sk unique,0,0,OK,cle non unique = risque de multiplication en jointure
+integrite_item,Integrite,ss_item_sk present dans item,0,0,OK,"jointure en left, valeur nulle assumee et documentee"
+integrite_store,Integrite,ss_store_sk present dans store,0,0,OK,"jointure en left, valeur nulle assumee et documentee"
+integrite_date_dim,Integrite,ss_sold_date_sk present dans date_dim,0,0,OK,"jointure en left, valeur nulle assumee et documentee"
+bouclage_gold,Coherence,somme Gold = somme Silver,1150529586,1150529586,OK,un ecart = perte ou duplication dans la chaine
+panier_moyen_calculable,Validite,panier moyen renseigne partout,0,0,OK,null si aucune transaction : KPI 3 non calculable sur ce groupe

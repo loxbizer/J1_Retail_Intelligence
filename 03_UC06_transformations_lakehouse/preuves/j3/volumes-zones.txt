@@ -1,0 +1,7 @@
+3.4 M   10.3 M   /retail/silver/products
+39.9 M  119.8 M  /retail/silver/sales
+12.1 K  36.2 K   /retail/silver/stores
+3.5 M   10.4 M   /retail/silver/time
+30.5 K  91.5 K   /retail/gold/ca_mensuel_magasin
+24.6 K  73.9 K   /retail/gold/ca_mensuel_magasin_notebook
+1.2 M   3.7 M    /retail/gold/top_produits_quantite
